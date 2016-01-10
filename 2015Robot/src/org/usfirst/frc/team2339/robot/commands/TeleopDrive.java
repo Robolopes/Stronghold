@@ -5,7 +5,7 @@ import org.usfirst.frc.team2339.robot.subsystems.SwerveDrive;
 import org.usfirst.frc.team2339.robot.swervemath.SwerveWheel.RobotMotion;
 import org.usfirst.frc.team2339.robot.swervemath.SwerveWheel.VelocityPolar;
 
-import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

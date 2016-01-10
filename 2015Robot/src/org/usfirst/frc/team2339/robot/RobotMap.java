@@ -5,7 +5,8 @@ import org.usfirst.frc.team2339.robot.components.SwerveSteeringPidController;
 import org.usfirst.frc.team2339.robot.subsystems.Lift;
 import org.usfirst.frc.team2339.robot.subsystems.SwerveDriveRectangle;
 
-import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Talon;
 
 public class RobotMap {
@@ -41,7 +42,7 @@ public class RobotMap {
 	
 	
 	public static class Analog {
-		public static final Gyro GYRO = new Gyro(0);
+		public static final Gyro GYRO = new AnalogGyro(0);
 	};
 	
 	public static class PWM {

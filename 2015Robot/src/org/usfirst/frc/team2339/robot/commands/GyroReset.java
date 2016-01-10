@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2339.robot.commands;
 
-import edu.wpi.first.wpilibj.Gyro;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
