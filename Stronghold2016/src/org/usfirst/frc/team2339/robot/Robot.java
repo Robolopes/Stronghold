@@ -1,14 +1,14 @@
 
 package org.usfirst.frc.team2339.robot;
 
+import org.usfirst.frc.team2339.robot.commands.AutonomousCommand;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team2339.robot.commands.ExampleCommand;
-import org.usfirst.frc.team2339.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.tables.TableKeyNotDefinedException;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -19,10 +19,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-	public static OI oi;
+    /**
+     * This function is run when the robot is first started up and should be
+     * used for any initialization code.
+     */
 
-    Command autonomousCommand;
+    // Control operator interface
+    public static OI oi;
+
+    // Commands
+    private AutonomousCommand autonomousCommand;
+
     SendableChooser chooser;
 
     /**
@@ -30,11 +37,38 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
+        
+    	/*
+    	 * Initialize robot components and subsystems
+    	 */
+    	RobotMap.init();
+    	
+        // OI must be constructed after subsystems. If the OI creates Commands 
+        //(which it very likely will), subsystems are not guaranteed to be 
+        // constructed yet. Thus, their requires() statements may grab null 
+        // pointers. Bad news. Don't move it.
+        oi = new OI();
+
+        // Autonomous dashboard values
+        try {
+            SmartDashboard.getNumber("Auto lift time ");
+            SmartDashboard.getNumber("Auto lift speed ");
+            SmartDashboard.getNumber("Auto drive time ");
+            SmartDashboard.getNumber("Auto drive speed ");
+        } catch (TableKeyNotDefinedException e) {
+            SmartDashboard.putNumber("Auto lift time ", 1);
+            SmartDashboard.putNumber("Auto lift speed ", 0.5);
+            SmartDashboard.putNumber("Auto drive time ", 0.0);
+            SmartDashboard.putNumber("Auto drive speed ", 0.5);
+        }
+
+        /*
+         * TODO: Figure out what a SendableChooser does
         chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new ExampleCommand());
-//        chooser.addObject("My Auto", new MyAutoCommand());
+        chooser.addDefault("Default Auto", new AutonomousCommand(RobotMap.Subsystem.robotDrive, RobotMap.Subsystem.lift));
         SmartDashboard.putData("Auto mode", chooser);
+         */
+        
     }
 	
 	/**
@@ -43,7 +77,7 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
      */
     public void disabledInit(){
-
+       	RobotMap.Subsystem.robotDrive.stop();
     }
 	
 	public void disabledPeriodic() {
@@ -60,20 +94,11 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
     	
-    	// schedule the autonomous command (example)
+        // Autonomous command
+        autonomousCommand = new AutonomousCommand(RobotMap.Subsystem.robotDrive, RobotMap.Subsystem.lift);
+    	
+    	// schedule the autonomous command
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -89,7 +114,10 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
+        //if (autonomousCommand != null) autonomousCommand.cancel();
+        
+        oi.getTeleopDrive().start();
+        oi.getTeleopLift().start();
     }
 
     /**
