@@ -116,6 +116,7 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         //if (autonomousCommand != null) autonomousCommand.cancel();
         
+    	RobotMap.Subsystem.robotDrive.shift(false);
         oi.getTeleopDrive().start();
         oi.getTeleopLift().start();
     }

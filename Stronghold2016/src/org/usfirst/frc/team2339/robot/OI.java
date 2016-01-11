@@ -5,8 +5,6 @@ import org.usfirst.frc.team2339.robot.commands.TeleopLift;
 import org.usfirst.frc.team2339.robot.components.DriveJoystick;
 import org.usfirst.frc.team2339.robot.components.OperatorJoystick;
 
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -54,7 +52,7 @@ public class OI {
 	 * 
 	 */
 	public OI() {
-        setJoystickOperator(new OperatorJoystick(1));
+        setJoystickOperator(new OperatorJoystick(2));
         setJoystickDriveLeft(new DriveJoystick(0, true));
         setJoystickDriveRight(new DriveJoystick(1, false));
         setTeleopDrive(new TeleopDrive("Teleop drive", RobotMap.Subsystem.robotDrive, getJoystickDriveLeft(), getJoystickDriveRight()));

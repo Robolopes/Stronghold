@@ -3,6 +3,9 @@ package org.usfirst.frc.team2339.robot;
 import org.usfirst.frc.team2339.robot.subsystems.Lift;
 import org.usfirst.frc.team2339.robot.subsystems.WesternDrive;
 
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Solenoid;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -21,12 +24,20 @@ public class RobotMap {
     // public static int rangefinderModule = 1;
 
 	
+	public static class Solenoids {
+		public static final int SUPER_SHIFTER = 1;
+	};
+	
 	public static class PWM {
-		public static final int LIFT_WINCH = 8;
+		public static final int DRIVE_LEFT_0 = 1;
+		public static final int DRIVE_LEFT_1 = 2;
+		public static final int DRIVE_RIGHT_0 = 3;
+		public static final int DRIVE_RIGHT_1 = 4;
+		public static final int LIFT_WINCH = 5;
 	};
 	
 	public static class DIO {
-		public static final int LIFT_LOWER_LIMIT_SWITCH = 8;
+		public static final int LIFT_LOWER_LIMIT_SWITCH = 1;
 	};
 	
 	public static class Subsystem {
@@ -42,7 +53,9 @@ public class RobotMap {
     	/*
     	 * Initialize robot drive subsystem
     	 */
-        Subsystem.robotDrive = new WesternDrive();
+        Subsystem.robotDrive = new WesternDrive(
+        		new RobotDrive(PWM.DRIVE_LEFT_0, PWM.DRIVE_LEFT_1, PWM.DRIVE_RIGHT_0, PWM.DRIVE_RIGHT_1), 
+        		new Solenoid(Solenoids.SUPER_SHIFTER));
 
         /*
          * Initialize lift subsystem
