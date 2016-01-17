@@ -4,6 +4,7 @@ import org.usfirst.frc.team2339.robot.subsystems.Lift;
 import org.usfirst.frc.team2339.robot.subsystems.WesternDrive;
 
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Solenoid;
 
 /**
@@ -53,8 +54,17 @@ public class RobotMap {
     	/*
     	 * Initialize robot drive subsystem
     	 */
+    	RobotDrive baseRobotDrive = new RobotDrive(PWM.DRIVE_LEFT_0, PWM.DRIVE_LEFT_1, PWM.DRIVE_RIGHT_0, PWM.DRIVE_RIGHT_1);
+    	/*
+    	 * Invert motors because of Western Drive.
+    	 * Thus should be necessary if all motors are wired in the same direction
+    	 * WARNING: Carefully test before applying power to all motors to make sure they turn the same way.
+    	 *          Always test one motor per side before wiring both to avoid destroying the transmission.
+    	 */
+    	baseRobotDrive.setInvertedMotor(MotorType.kRearLeft, true);
+    	baseRobotDrive.setInvertedMotor(MotorType.kRearRight, true);
         Subsystem.robotDrive = new WesternDrive(
-        		new RobotDrive(PWM.DRIVE_LEFT_0, PWM.DRIVE_LEFT_1, PWM.DRIVE_RIGHT_0, PWM.DRIVE_RIGHT_1), 
+        		baseRobotDrive, 
         		new Solenoid(Solenoids.SUPER_SHIFTER));
 
         /*
