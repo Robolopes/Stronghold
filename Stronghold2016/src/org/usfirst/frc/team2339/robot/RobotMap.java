@@ -38,7 +38,8 @@ public class RobotMap {
 		/*
 		 * Test and set appropriate values
 		 */
-		public static final double DRIVE_INCHES_PER_PULSE = 0.1;
+		public static final double DRIVE_INCHES_PER_PULSE_LOW = 0.1;
+		public static final double DRIVE_INCHES_PER_PULSE_HIGH = 0.2;
 		public static final double DRIVE_PID_P = 0.02;
 		public static final double DRIVE_PID_I = 0;
 		public static final double DRIVE_PID_D = 0;
@@ -97,63 +98,18 @@ public class RobotMap {
 	    public static Lift lift;
 	};
     
-    /**
-	 * Create a drive wheel controller
-	 * 
-     * @param driveEncoderChannelA First steering encoder DIO channel 
-     * @param driveEncoderChannelB Second steering encoder DIO channel
-     * @param driveMotorControllerPwm Steering motor controller PWM channel
-     * @return new drive wheel controller
-     */
-    public static DrivePidController newDriveController(
-    		int driveEncoderChannelA, 
-    		int driveEncoderChannelB, 
-    		DualTalonController driveMotorController) {
-    	
-    	return new DrivePidController(
-    			Constants.DRIVE_PID_P, 
-    			Constants.DRIVE_PID_I, 
-    			Constants.DRIVE_PID_D, 
-    			new DriveEncoder(driveEncoderChannelA, 
-    					driveEncoderChannelB, 
-    					Constants.DRIVE_INCHES_PER_PULSE), 
-    			driveMotorController);
-    }
-
 	/**
 	 * Initialize subsystems and components based on RobotMap values
 	 */
     public static void init() {
     	
-    	/*
-    	 * Initialize robot drive subsystem
-    	 */
-		Talon driveLeft0 = new Talon(PWM.DRIVE_LEFT_0);
-		Talon driveLeft1 = new Talon(PWM.DRIVE_LEFT_1);
-		Talon driveRight0 = new Talon(PWM.DRIVE_RIGHT_0);
-		Talon driveRight1 = new Talon(PWM.DRIVE_RIGHT_1);
-    	RobotDrive baseRobotDrive = new RobotDrive(driveLeft0, driveLeft1, driveRight0, driveRight1);
-    	/*
-    	 * Invert motors because of Western Drive.
-    	 * Thus should be necessary if all motors are wired in the same direction
-    	 * WARNING: Carefully test before applying power to all motors to make sure they turn the same way.
-    	 *          Always test one motor per side before wiring both to avoid destroying the transmission.
-    	 */
-    	baseRobotDrive.setInvertedMotor(MotorType.kRearLeft, true);
-    	baseRobotDrive.setInvertedMotor(MotorType.kRearRight, true);
-    	
-    	DrivePidController driveControllerLeft = newDriveController(
-    			DIO.DRIVE_ENCODER_LEFT[0], 
-    			DIO.DRIVE_ENCODER_LEFT[1],
-    			new DualTalonController(driveLeft0, driveLeft1));
-    	DrivePidController driveControllerRight = newDriveController(
-    			DIO.DRIVE_ENCODER_RIGHT[0], 
-    			DIO.DRIVE_ENCODER_RIGHT[1],
-    			new DualTalonController(driveRight0, driveRight1));
-    	
         Subsystem.robotDrive = new WesternDrive(
-        		baseRobotDrive, 
-        		new Solenoid(Solenoids.SUPER_SHIFTER));
+        		PWM.DRIVE_LEFT_0, PWM.DRIVE_LEFT_1, 
+        		PWM.DRIVE_RIGHT_0, PWM.DRIVE_RIGHT_1, 
+        		DIO.DRIVE_ENCODER_LEFT, DIO.DRIVE_ENCODER_RIGHT, 
+        		Constants.DRIVE_INCHES_PER_PULSE_LOW, 
+        		Constants.DRIVE_INCHES_PER_PULSE_HIGH, 
+        		Solenoids.SUPER_SHIFTER);
 
         /*
          * Initialize lift subsystem

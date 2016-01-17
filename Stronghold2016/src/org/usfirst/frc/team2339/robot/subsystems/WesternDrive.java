@@ -1,9 +1,15 @@
 package org.usfirst.frc.team2339.robot.subsystems;
 
+import org.usfirst.frc.team2339.robot.RobotMap.Constants;
 import org.usfirst.frc.team2339.robot.components.DriveJoystick;
+import org.usfirst.frc.team2339.robot.components.DrivePidController;
+import org.usfirst.frc.team2339.robot.components.DualTalonController;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -12,15 +18,55 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class WesternDrive extends Subsystem {
 	
-	private RobotDrive drive;
+	private final RobotDrive drive;
+	private final Encoder encoderLeft;
+	private final Encoder encoderRight;
+	private final DrivePidController controllerLeft;
+	private final DrivePidController controllerRight;
+	private final double inchesPerPulseLow;
+	private final double inchesPerPulseHigh;
     private final Solenoid superShifter;
     
     private boolean isSuperShifterLow;
     private boolean wasSuperShifterButtonJustPushed;
 	
-    public WesternDrive(RobotDrive drive, Solenoid superShifter) {
-    	this.drive = drive;
-    	this.superShifter = superShifter;
+    public WesternDrive(int driveChannelLeft0, int driveChannelLeft1, 
+    		int driveChannelRight0, int driveChannelRight1,
+    		int[] driveEncoderChannelsLeft, int[] driveEncoderChannelsRight,
+    		double inchesPerPulseLow, double inchesPerPulseHigh, 
+    		int superShifterChannel) {
+
+    	Talon driveLeft0 = new Talon(driveChannelLeft0);
+    	Talon driveLeft1 = new Talon(driveChannelLeft1);
+    	Talon driveRight0 = new Talon(driveChannelRight0);
+    	Talon driveRight1 = new Talon(driveChannelRight1);
+    	this.drive = new RobotDrive(driveChannelLeft0, driveChannelLeft1, 
+    			driveChannelRight0, driveChannelRight1);
+    	// Invert because one motor should be opposite
+    	this.drive.setInvertedMotor(MotorType.kRearLeft, true);
+    	this.drive.setInvertedMotor(MotorType.kRearRight, true);
+
+    	this.inchesPerPulseLow = inchesPerPulseLow;
+    	this.inchesPerPulseHigh = inchesPerPulseHigh;
+
+    	DualTalonController leftDual = new DualTalonController(driveLeft0, driveLeft1);
+    	DualTalonController rightDual = new DualTalonController(driveRight0, driveRight1);
+    	encoderLeft = new Encoder(driveEncoderChannelsLeft[0], driveEncoderChannelsLeft[1]);
+    	encoderRight = new Encoder(driveEncoderChannelsRight[0], driveEncoderChannelsRight[1]);
+    	controllerLeft = new DrivePidController(
+    			Constants.DRIVE_PID_P, 
+    			Constants.DRIVE_PID_I, 
+    			Constants.DRIVE_PID_D, 
+    			encoderLeft, 
+    			leftDual);
+    	controllerRight = new DrivePidController(
+    			Constants.DRIVE_PID_P, 
+    			Constants.DRIVE_PID_I, 
+    			Constants.DRIVE_PID_D, 
+    			encoderRight, 
+    			rightDual);
+
+    	this.superShifter = new Solenoid(superShifterChannel);
     	shift(true);
     	wasSuperShifterButtonJustPushed = false;
     }

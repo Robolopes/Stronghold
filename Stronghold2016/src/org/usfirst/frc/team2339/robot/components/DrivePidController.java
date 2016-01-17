@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2339.robot.components;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 
 /**
@@ -10,10 +11,10 @@ import edu.wpi.first.wpilibj.PIDController;
  */
 public class DrivePidController extends PIDController {
 
-	private final DriveEncoder driveEncoder;
+	private final Encoder driveEncoder;
 	
 	public DrivePidController(double Kp, double Ki, double Kd,
-			DriveEncoder driveEncoder,
+			Encoder driveEncoder,
 			DualTalonController driveMotorController) {
 		super(Kp, Ki, Kd, driveEncoder, driveMotorController);
 		this.driveEncoder = driveEncoder;
