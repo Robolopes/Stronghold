@@ -3,8 +3,12 @@ package org.usfirst.frc.team2339.robot;
 import org.usfirst.frc.team2339.robot.subsystems.Lift;
 import org.usfirst.frc.team2339.robot.subsystems.WesternDrive;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.Solenoid;
 
 /**
@@ -29,16 +33,24 @@ public class RobotMap {
 		public static final int SUPER_SHIFTER = 1;
 	};
 	
+	public static class Analog {
+		public static final Gyro GYRO = new AnalogGyro(0);
+		public static final Potentiometer SCIMITAR_POTENTIOMETER = new AnalogPotentiometer(1);
+	};
+	
 	public static class PWM {
 		public static final int DRIVE_LEFT_0 = 1;
 		public static final int DRIVE_LEFT_1 = 2;
 		public static final int DRIVE_RIGHT_0 = 3;
 		public static final int DRIVE_RIGHT_1 = 4;
-		public static final int LIFT_WINCH = 5;
+		public static final int SCIMITAR = 5;
+		public static final int LIFT_WINCH = 6;
 	};
 	
 	public static class DIO {
-		public static final int LIFT_LOWER_LIMIT_SWITCH = 1;
+		public static final int[] DRIVE_ENCODER_LEFT = {0, 1};
+		public static final int[] DRIVE_ENCODER_RIGHT = {2, 3};
+		public static final int SCIMITAR_LOWER_LIMIT_SWITCH = 4;
 	};
 	
 	public static class Subsystem {
@@ -70,7 +82,7 @@ public class RobotMap {
         /*
          * Initialize lift subsystem
          */
-        Subsystem.lift = new Lift(PWM.LIFT_WINCH, DIO.LIFT_LOWER_LIMIT_SWITCH);
+        Subsystem.lift = new Lift(PWM.LIFT_WINCH, DIO.SCIMITAR_LOWER_LIMIT_SWITCH);
         
     }
 
