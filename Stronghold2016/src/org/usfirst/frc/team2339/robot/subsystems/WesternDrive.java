@@ -97,8 +97,12 @@ public class WesternDrive extends Subsystem {
         this.isSuperShifterLow = isSuperShifterLow;
         if (isSuperShifterLow) {
             SmartDashboard.putString("Super shifter ", "High");
+            encoderLeft.setDistancePerPulse(inchesPerPulseLow);
+            encoderRight.setDistancePerPulse(inchesPerPulseLow);
         } else {
             SmartDashboard.putString("Super shifter ", "Low");
+            encoderLeft.setDistancePerPulse(inchesPerPulseHigh);
+            encoderRight.setDistancePerPulse(inchesPerPulseHigh);
         }
     }
     
@@ -150,6 +154,15 @@ public class WesternDrive extends Subsystem {
     
     public void stop() {
     	drive.tankDrive(0, 0);
+    }
+
+    public void driveAtSpeed(double left, double right) {
+    	controllerLeft.setSetpoint(left);
+    	controllerRight.setSetpoint(right);
+    }
+    
+    public void pidBrake() {
+    	driveAtSpeed(0, 0);
     }
 }
 

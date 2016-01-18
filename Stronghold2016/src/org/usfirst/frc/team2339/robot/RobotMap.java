@@ -1,17 +1,11 @@
 package org.usfirst.frc.team2339.robot;
 
-import org.usfirst.frc.team2339.robot.components.DriveEncoder;
-import org.usfirst.frc.team2339.robot.components.DrivePidController;
-import org.usfirst.frc.team2339.robot.components.DualTalonController;
 import org.usfirst.frc.team2339.robot.subsystems.Lift;
 import org.usfirst.frc.team2339.robot.subsystems.WesternDrive;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.RobotDrive.MotorType;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
@@ -59,6 +53,7 @@ public class RobotMap {
 	};
 	
 	public static class Analog {
+		public static final BuiltInAccelerometer ACCELEROMETER = new BuiltInAccelerometer();
 		public static final int GYRO_CHANNEL = 0;
 		public static final int SCIMITAR_POTENTIOMETER_CHANNEL = 1;
 	};
