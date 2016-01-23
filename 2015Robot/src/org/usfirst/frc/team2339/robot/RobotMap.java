@@ -1,13 +1,14 @@
 package org.usfirst.frc.team2339.robot;
 
+import org.usfirst.frc.team2339.robot.components.DashCamera;
 import org.usfirst.frc.team2339.robot.components.SwerveSteeringEncoder;
 import org.usfirst.frc.team2339.robot.components.SwerveSteeringPidController;
 import org.usfirst.frc.team2339.robot.subsystems.Lift;
 import org.usfirst.frc.team2339.robot.subsystems.SwerveDriveRectangle;
 
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 public class RobotMap {
 	
@@ -69,6 +70,12 @@ public class RobotMap {
 		public static final int STEERING_ENCODERS_B[] = {3, 1, 5, 7};
 		public static final int LIFT_LOWER_LIMIT_SWITCH = 8;
 	};
+	
+	public static class Camera {
+		// The camera name (ex "cam0") can be found through the roborio web interface
+		public static final String NAME = "cam0";
+		public static DashCamera dashCamera = new DashCamera(NAME);
+	}
 	
 	public static class Subsystem {
 	    public static SwerveDriveRectangle robotDrive; 
@@ -132,7 +139,7 @@ public class RobotMap {
         		driveControllers, 
         		steeringPidControllers));
         Subsystem.robotDrive.resetSteering();
-
+        
         /*
          * Initialize lift subsystem
          */
