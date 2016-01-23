@@ -1,4 +1,4 @@
-package org.usfirst.frc.team2339.robot.components;
+package org.usfirst.frc.team2339.robot.subsystems;
 
 import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.DrawMode;
@@ -6,13 +6,14 @@ import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ShapeMode;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class DashCamera {
+public class CameraSystem extends Subsystem {
 	private final String name;
 	private final int session;
 	private final Image frame;
 	
-	public DashCamera(String name) {
+	public CameraSystem(String name) {
 		super();
 		this.name = name;
 		
@@ -34,6 +35,10 @@ public class DashCamera {
 		return frame;
 	}
 	
+	@Override
+	protected void initDefaultCommand() {
+	}
+
 	public void grabImage() {
 		
         NIVision.IMAQdxStartAcquisition(session);

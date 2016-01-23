@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2339.robot;
 
+import org.usfirst.frc.team2339.robot.commands.DashCamera;
 import org.usfirst.frc.team2339.robot.commands.GyroReset;
 import org.usfirst.frc.team2339.robot.commands.SetSwervePivotPoint;
 import org.usfirst.frc.team2339.robot.commands.TeleopDrive;
@@ -31,6 +32,7 @@ public class OI {
     private JoystickButton gyroResetButton;
     
     private TeleopDrive teleopDrive;
+    private DashCamera dashCamera;
     private TeleopLift teleopLift;
 
 	/**
@@ -40,6 +42,7 @@ public class OI {
         setJoystickOperator(new OperatorJoystick(1));
         setJoystickDrive(new SwerveJoystick(0));
         setTeleopDrive(new TeleopDrive("Teleop drive", RobotMap.Subsystem.robotDrive, getJoystickDrive(), RobotMap.Analog.GYRO));
+        setDashCamera(new DashCamera("Dash camera", RobotMap.Subsystem.cameraSystem));
         setTeleopLift(new TeleopLift("Teleop lift", RobotMap.Subsystem.lift, getJoystickOperator()));
         
         containerPivotButton = new JoystickButton(getJoystickDrive(), DRIVE_BUTTON_ROTATE_AROUND_CONTAINER);
@@ -95,6 +98,14 @@ public class OI {
 	 */
 	private void setTeleopDrive(TeleopDrive teleopDrive) {
 		this.teleopDrive = teleopDrive;
+	}
+
+	public DashCamera getDashCamera() {
+		return dashCamera;
+	}
+
+	public void setDashCamera(DashCamera dashCamera) {
+		this.dashCamera = dashCamera;
 	}
 
 	/**

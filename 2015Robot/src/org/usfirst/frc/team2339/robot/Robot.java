@@ -86,6 +86,9 @@ public class Robot extends IterativeRobot {
         // Autonomous command
         autonomousCommand = new AutonomousCommand(RobotMap.Subsystem.robotDrive, RobotMap.Subsystem.lift);
         if (autonomousCommand != null) autonomousCommand.start();
+        
+        // Camera
+        oi.getDashCamera().start();
     }
 
     /**
@@ -109,6 +112,7 @@ public class Robot extends IterativeRobot {
     	//RobotMap.Subsystem.robotDrive.resetSteering();
     	RobotMap.Subsystem.robotDrive.enableSteering(true);
         oi.getTeleopDrive().start();
+        oi.getDashCamera().start();
         oi.getTeleopLift().start();
     }
 

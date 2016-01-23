@@ -1,8 +1,8 @@
 package org.usfirst.frc.team2339.robot;
 
-import org.usfirst.frc.team2339.robot.components.DashCamera;
 import org.usfirst.frc.team2339.robot.components.SwerveSteeringEncoder;
 import org.usfirst.frc.team2339.robot.components.SwerveSteeringPidController;
+import org.usfirst.frc.team2339.robot.subsystems.CameraSystem;
 import org.usfirst.frc.team2339.robot.subsystems.Lift;
 import org.usfirst.frc.team2339.robot.subsystems.SwerveDriveRectangle;
 
@@ -74,11 +74,11 @@ public class RobotMap {
 	public static class Camera {
 		// The camera name (ex "cam0") can be found through the roborio web interface
 		public static final String NAME = "cam0";
-		public static DashCamera dashCamera = new DashCamera(NAME);
 	}
 	
 	public static class Subsystem {
 	    public static SwerveDriveRectangle robotDrive; 
+		public static CameraSystem cameraSystem = new CameraSystem(Camera.NAME);
 	    public static Lift lift;
 	};
     
