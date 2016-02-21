@@ -5,24 +5,24 @@ import org.usfirst.frc.team2339.robot.subsystems.Climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class TeleopLift extends Command {
+public class TeleopClimber extends Command {
 	/**
 	 * Runs lift based on operator input
 	 */
 	
-	private final Climber lift;
-	private final OperatorJoystick liftStick;
+	private final Climber climber;
+	private final OperatorJoystick climberStick;
 
 	/**
 	 * 
 	 * @param name Name of command
-	 * @param lift lift subsystem
+	 * @param climber climber subsystem
 	 */
-	public TeleopLift(String name, Climber lift, OperatorJoystick liftStick) {
+	public TeleopClimber(String name, Climber climber, OperatorJoystick climberStick) {
 		super(name);
-        requires(lift);
-        this.lift = lift;
-        this.liftStick = liftStick;
+        requires(climber);
+        this.climber = climber;
+        this.climberStick = climberStick;
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class TeleopLift extends Command {
 
 	@Override
 	protected void execute() {
-    	lift.setLiftMotor(liftStick.getLift());
+    	climber.takeJoystickInput(climberStick);
 	}
 
 	@Override
@@ -41,12 +41,12 @@ public class TeleopLift extends Command {
 
 	@Override
 	protected void end() {
-		lift.stopLiftMotor();
+		climber.stopClimberMotor();
 	}
 
 	@Override
 	protected void interrupted() {
-		lift.stopLiftMotor();
+		climber.stopClimberMotor();
 	}
 
 }

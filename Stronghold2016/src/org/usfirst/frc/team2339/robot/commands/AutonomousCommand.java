@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2339.robot.commands;
 
-import org.usfirst.frc.team2339.robot.subsystems.Climber;
+import org.usfirst.frc.team2339.robot.subsystems.BoulderHandler;
+import org.usfirst.frc.team2339.robot.subsystems.Scimitar;
 import org.usfirst.frc.team2339.robot.subsystems.WesternDrive;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -11,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AutonomousCommand extends CommandGroup {
     
-    public  AutonomousCommand(WesternDrive robotDrive, Climber lift) {
+    public  AutonomousCommand(WesternDrive robotDrive, Scimitar scimitar, BoulderHandler boulderHandler) {
     	super("Autonomous Commands");
     	
         // Add Commands here:
@@ -31,9 +32,6 @@ public class AutonomousCommand extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new TimedLift("Lower lift", lift, 
-    			SmartDashboard.getNumber("Auto lift time ", 1), 
-    			SmartDashboard.getNumber("Auto lift speed ", -0.5))); 
     	addSequential(new TimedDrive("Drive to auto zone", robotDrive, 
     			SmartDashboard.getNumber("Auto drive time ", 2.25), 
     			SmartDashboard.getNumber("Auto drive speed ", 0.5))); 

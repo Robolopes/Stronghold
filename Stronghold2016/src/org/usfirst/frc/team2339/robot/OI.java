@@ -1,7 +1,9 @@
 package org.usfirst.frc.team2339.robot;
 
+import org.usfirst.frc.team2339.robot.commands.TeleopBoulderHandler;
+import org.usfirst.frc.team2339.robot.commands.TeleopClimber;
 import org.usfirst.frc.team2339.robot.commands.TeleopDrive;
-import org.usfirst.frc.team2339.robot.commands.TeleopLift;
+import org.usfirst.frc.team2339.robot.commands.TeleopScimitar;
 import org.usfirst.frc.team2339.robot.components.DriveJoystick;
 import org.usfirst.frc.team2339.robot.components.OperatorJoystick;
 
@@ -58,7 +60,9 @@ public class OI {
     private OperatorJoystick joystickOperator;
     
     private TeleopDrive teleopDrive;
-    private TeleopLift teleopLift;
+    private TeleopScimitar teleopScimitar;
+    private TeleopBoulderHandler teleopBoulderHandler;
+    private TeleopClimber teleopClimber;
     
 	/**
 	 * 
@@ -68,8 +72,9 @@ public class OI {
         setJoystickDriveLeft(new DriveJoystick(0, true));
         setJoystickDriveRight(new DriveJoystick(1, false));
         setTeleopDrive(new TeleopDrive("Teleop drive", RobotMap.Subsystem.robotDrive, getJoystickDriveLeft(), getJoystickDriveRight()));
-        setTeleopLift(new TeleopLift("Teleop lift", RobotMap.Subsystem.climber, getJoystickOperator()));
-        
+        setTeleopScimitar(new TeleopScimitar("Teleop lift", RobotMap.Subsystem.scimitar, getJoystickOperator()));
+        setTeleopBoulderHandler(new TeleopBoulderHandler("Teleop lift", RobotMap.Subsystem.boulderHandler, getJoystickOperator()));
+        setTeleopClimber(new TeleopClimber("Teleop lift", RobotMap.Subsystem.climber, getJoystickOperator()));
 	}
 
     
@@ -129,19 +134,35 @@ public class OI {
 		this.teleopDrive = teleopDrive;
 	}
 
-	/**
-	 * @return the teleopLift
-	 */
-	public TeleopLift getTeleopLift() {
-		return teleopLift;
+
+	public TeleopScimitar getTeleopScimitar() {
+		return teleopScimitar;
 	}
 
-	/**
-	 * @param teleopLift the teleopLift to set
-	 */
-	private void setTeleopLift(TeleopLift teleopLift) {
-		this.teleopLift = teleopLift;
+
+	private void setTeleopScimitar(TeleopScimitar teleopScimitar) {
+		this.teleopScimitar = teleopScimitar;
 	}
+
+	public TeleopBoulderHandler getTeleopBoulderHandler() {
+		return teleopBoulderHandler;
+	}
+
+
+	private void setTeleopBoulderHandler(TeleopBoulderHandler teleopBoulderHandler) {
+		this.teleopBoulderHandler = teleopBoulderHandler;
+	}
+
+
+	public TeleopClimber getTeleopClimber() {
+		return teleopClimber;
+	}
+
+
+	private void setTeleopClimber(TeleopClimber teleopClimber) {
+		this.teleopClimber = teleopClimber;
+	}
+
 
 }
 

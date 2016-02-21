@@ -51,13 +51,9 @@ public class Robot extends IterativeRobot {
 
         // Autonomous dashboard values
         try {
-            SmartDashboard.getNumber("Auto lift time ");
-            SmartDashboard.getNumber("Auto lift speed ");
             SmartDashboard.getNumber("Auto drive time ");
             SmartDashboard.getNumber("Auto drive speed ");
         } catch (TableKeyNotDefinedException e) {
-            SmartDashboard.putNumber("Auto lift time ", 1);
-            SmartDashboard.putNumber("Auto lift speed ", 0.5);
             SmartDashboard.putNumber("Auto drive time ", 0.0);
             SmartDashboard.putNumber("Auto drive speed ", 0.5);
         }
@@ -96,7 +92,8 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	
         // Autonomous command
-        autonomousCommand = new AutonomousCommand(RobotMap.Subsystem.robotDrive, RobotMap.Subsystem.climber);
+        autonomousCommand = new AutonomousCommand(RobotMap.Subsystem.robotDrive, RobotMap.Subsystem.scimitar, 
+        		RobotMap.Subsystem.boulderHandler);
     	
     	// schedule the autonomous command
         if (autonomousCommand != null) autonomousCommand.start();
@@ -118,7 +115,9 @@ public class Robot extends IterativeRobot {
         
     	RobotMap.Subsystem.robotDrive.shift(false);
         oi.getTeleopDrive().start();
-        oi.getTeleopLift().start();
+        oi.getTeleopScimitar().start();
+        oi.getTeleopBoulderHandler().start();
+        oi.getTeleopClimber().start();
     }
 
     /**
