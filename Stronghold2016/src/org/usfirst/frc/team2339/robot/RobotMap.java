@@ -1,13 +1,13 @@
 package org.usfirst.frc.team2339.robot;
 
-import org.usfirst.frc.team2339.robot.subsystems.Lift;
+import org.usfirst.frc.team2339.robot.subsystems.BoulderHandler;
+import org.usfirst.frc.team2339.robot.subsystems.Climber;
+import org.usfirst.frc.team2339.robot.subsystems.Scimitar;
 import org.usfirst.frc.team2339.robot.subsystems.WesternDrive;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -38,24 +38,19 @@ public class RobotMap {
 		public static final double DRIVE_PID_I = 0;
 		public static final double DRIVE_PID_D = 0;
 		
-		/*
-		 * Test and set appropriate values
-		 */
-		public static final double SCIMITAR_MAXIMUM_ANGLE_DEGREES = 135;
-		public static final double SCIMITAR_PID_P = 0.02;
-		public static final double SCIMITAR_PID_I = 0;
-		public static final double SCIMITAR_PID_D = 0;
-		
 	};
 	
 	public static class Solenoids {
 		public static final int SUPER_SHIFTER = 1;
+		public static final int SCIMITAR_UP = 2;
+		public static final int SCIMITAR_DOWN = 3;
+		public static final int CLIMBER_UP = 4;
+		public static final int CLIMBER_DOWN = 5;
 	};
 	
 	public static class Analog {
 		public static final BuiltInAccelerometer ACCELEROMETER = new BuiltInAccelerometer();
 		public static final int GYRO_CHANNEL = 0;
-		public static final int SCIMITAR_POTENTIOMETER_CHANNEL = 1;
 	};
 	
 	public static class PWM {
@@ -65,32 +60,25 @@ public class RobotMap {
 		public static final int DRIVE_RIGHT_1 = 3;
 		public static final int SCIMITAR = 4;
 		public static final int CONVEYOR = 5;
-		public static final int SHOOTING_WHEEL = 6;
-		public static final int LIFT_WINCH = 7;
+		public static final int SHOOTING_WHEEL_0 = 6;
+		public static final int SHOOTING_WHEEL_1 = 7;
+		public static final int CLIMBER_WINCH = 8;
 	};
 	
 	public static class DIO {
 		public static final int[] DRIVE_ENCODER_LEFT = {0, 1};
 		public static final int[] DRIVE_ENCODER_RIGHT = {2, 3};
-		/*
-		 * These assume Ping-Response sensors like Devantech SRF04 or VEX Ultrasonic Rangefinder.
-		 * If we use analog sensors attach to analog
-		 * See http://wpilib.screenstepslive.com/s/3120/m/7912/l/85774-measuring-robot-distance-to-a-surface-using-ultrasonic-sensors
-		 */
-		public static final int[] ULTRASONIC_RIGHT = {4, 5};
-		public static final int[] ULTRASONIC_LEFT = {6, 7};
-		public static final int SCIMITAR_LOWER_LIMIT_SWITCH = 8;
 	};
 	
 	public static class Component {
 		public static final Gyro GYRO = new AnalogGyro(Analog.GYRO_CHANNEL);
-		public static final Potentiometer SCIMITAR_POTENTIOMETER = 
-				new AnalogPotentiometer(Analog.SCIMITAR_POTENTIOMETER_CHANNEL);
 	};
     
 	public static class Subsystem {
 	    public static WesternDrive robotDrive; 
-	    public static Lift lift;
+	    public static Scimitar scimitar;
+	    public static BoulderHandler boulderHandler;
+	    public static Climber climber;
 	};
     
 	/**
@@ -107,9 +95,19 @@ public class RobotMap {
         		Solenoids.SUPER_SHIFTER);
 
         /*
-         * Initialize lift subsystem
+         * Initialize boulder handler subsystem
          */
-        Subsystem.lift = new Lift(PWM.LIFT_WINCH, DIO.SCIMITAR_LOWER_LIMIT_SWITCH);
+        Subsystem.boulderHandler = new BoulderHandler(PWM.CONVEYOR, PWM.SHOOTING_WHEEL_0, PWM.SHOOTING_WHEEL_1);
+        
+        /*
+         * Initialize climber subsystem
+         */
+        Subsystem.scimitar = new Scimitar(PWM.SCIMITAR, Solenoids.SCIMITAR_UP, Solenoids.SCIMITAR_DOWN);
+        
+        /*
+         * Initialize climber subsystem
+         */
+        Subsystem.climber = new Climber(PWM.CLIMBER_WINCH, Solenoids.CLIMBER_UP, Solenoids.CLIMBER_DOWN);
         
     }
 

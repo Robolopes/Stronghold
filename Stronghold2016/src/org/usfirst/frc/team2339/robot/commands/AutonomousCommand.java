@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2339.robot.commands;
 
-import org.usfirst.frc.team2339.robot.subsystems.Lift;
+import org.usfirst.frc.team2339.robot.subsystems.Climber;
 import org.usfirst.frc.team2339.robot.subsystems.WesternDrive;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AutonomousCommand extends CommandGroup {
     
-    public  AutonomousCommand(WesternDrive robotDrive, Lift lift) {
+    public  AutonomousCommand(WesternDrive robotDrive, Climber lift) {
     	super("Autonomous Commands");
     	
         // Add Commands here:

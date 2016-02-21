@@ -1,7 +1,7 @@
 package org.usfirst.frc.team2339.robot.commands;
 
 import org.usfirst.frc.team2339.robot.components.OperatorJoystick;
-import org.usfirst.frc.team2339.robot.subsystems.Lift;
+import org.usfirst.frc.team2339.robot.subsystems.Climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -10,7 +10,7 @@ public class TeleopLift extends Command {
 	 * Runs lift based on operator input
 	 */
 	
-	private final Lift lift;
+	private final Climber lift;
 	private final OperatorJoystick liftStick;
 
 	/**
@@ -18,7 +18,7 @@ public class TeleopLift extends Command {
 	 * @param name Name of command
 	 * @param lift lift subsystem
 	 */
-	public TeleopLift(String name, Lift lift, OperatorJoystick liftStick) {
+	public TeleopLift(String name, Climber lift, OperatorJoystick liftStick) {
 		super(name);
         requires(lift);
         this.lift = lift;

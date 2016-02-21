@@ -39,6 +39,18 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 
 	public static final int DRIVE_BUTTON_SPEED_SHIFT = 1;
+	public static final int OPERATOR_BUTTON_SHOOT = 1;
+	public static final double SHOOTER_SPEED = 1.0;
+	public static final int OPERATOR_BUTTON_SCIMITAR_UP_DOWN = 2;
+	public static final int OPERATOR_BUTTON_SCIMITAR_ROLLER_INTAKE = 3;
+	public static final double SCIMITAR_ROLLER_INTAKE_SPEED = 0.5;
+	public static final int OPERATOR_BUTTON_SCIMITAR_ROLLER_REVERSE = 4;
+	public static final double SCIMITAR_ROLLER_REVERSE_SPEED = -0.5;
+	public static final int OPERATOR_BUTTON_CONVERYOR_INTAKE = 5;
+	public static final double CONVERYOR_INTAKE_SPEED = 0.5;
+	public static final int OPERATOR_BUTTON_CONVERYOR_REVERSE = 6;
+	public static final double CONVERYOR_REVERSE_SPEED = -0.5;
+	public static final int OPERATOR_BUTTON_CLIMBER_UP_DOWN = 7;
 
     private DriveJoystick joystickDriveLeft;
     private DriveJoystick joystickDriveRight;
@@ -56,7 +68,7 @@ public class OI {
         setJoystickDriveLeft(new DriveJoystick(0, true));
         setJoystickDriveRight(new DriveJoystick(1, false));
         setTeleopDrive(new TeleopDrive("Teleop drive", RobotMap.Subsystem.robotDrive, getJoystickDriveLeft(), getJoystickDriveRight()));
-        setTeleopLift(new TeleopLift("Teleop lift", RobotMap.Subsystem.lift, getJoystickOperator()));
+        setTeleopLift(new TeleopLift("Teleop lift", RobotMap.Subsystem.climber, getJoystickOperator()));
         
 	}
 

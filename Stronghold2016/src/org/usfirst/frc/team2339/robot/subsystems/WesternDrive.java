@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2339.robot.subsystems;
 
+import org.usfirst.frc.team2339.robot.OI;
 import org.usfirst.frc.team2339.robot.RobotMap.Constants;
 import org.usfirst.frc.team2339.robot.components.DriveJoystick;
 import org.usfirst.frc.team2339.robot.components.DrivePidController;
@@ -123,7 +124,8 @@ public class WesternDrive extends Subsystem {
     private void takeJoystickShift(DriveJoystick left, DriveJoystick right) {
     	
     	boolean superShifterPushedNow = false;
-    	if (left.getSpeedShift() || right.getSpeedShift()) {
+    	if (left.getRawButton(OI.DRIVE_BUTTON_SPEED_SHIFT) || 
+    			right.getRawButton(OI.DRIVE_BUTTON_SPEED_SHIFT)) {
     		superShifterPushedNow = true;
     	}
 

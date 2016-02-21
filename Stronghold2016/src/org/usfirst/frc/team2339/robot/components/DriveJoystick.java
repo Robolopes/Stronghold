@@ -3,8 +3,6 @@
  */
 package org.usfirst.frc.team2339.robot.components;
 
-import org.usfirst.frc.team2339.robot.OI;
-
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
@@ -26,10 +24,6 @@ public class DriveJoystick extends Joystick {
 
 	public double getFrontBack() {
 		return -getRawAxis(1);
-	}
-
-	public boolean getSpeedShift() {
-		return getRawButton(OI.DRIVE_BUTTON_SPEED_SHIFT);
 	}
 
 	public boolean isLeft() {

@@ -27,7 +27,7 @@ public class OperatorJoystick extends Joystick {
 		super(port, numAxisTypes, numButtonTypes);
 	}
 	
-	public double getLift() {
+	public double getClimberSpeed() {
 		return getY();
 	}
 

@@ -96,7 +96,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	
         // Autonomous command
-        autonomousCommand = new AutonomousCommand(RobotMap.Subsystem.robotDrive, RobotMap.Subsystem.lift);
+        autonomousCommand = new AutonomousCommand(RobotMap.Subsystem.robotDrive, RobotMap.Subsystem.climber);
     	
     	// schedule the autonomous command
         if (autonomousCommand != null) autonomousCommand.start();

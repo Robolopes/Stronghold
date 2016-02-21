@@ -1,6 +1,6 @@
 package org.usfirst.frc.team2339.robot.commands;
 
-import org.usfirst.frc.team2339.robot.subsystems.Lift;
+import org.usfirst.frc.team2339.robot.subsystems.Climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,7 +9,7 @@ public class TimedLift extends Command {
 	 * Runs lift for a given time and speed
 	 */
 	
-	private final Lift lift;
+	private final Climber lift;
 	private final double time;
 	private final double speed;
 
@@ -20,7 +20,7 @@ public class TimedLift extends Command {
 	 * @param time Time to drive (in seconds)
 	 * @param speed Speed to drive at [0, 1]
 	 */
-	public TimedLift(String name, Lift lift, 
+	public TimedLift(String name, Climber lift, 
 			double time, double speed) {
 		super(name);
         requires(lift);
