@@ -4,7 +4,7 @@ import org.usfirst.frc.team2339.robot.OI;
 import org.usfirst.frc.team2339.robot.components.OperatorJoystick;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Climber extends Subsystem {
 
-    private final Talon climberMotor;
+    private final Victor climberMotor;
     private final Solenoid solenoidUp;
     private final Solenoid solenoidDown;
 
@@ -22,7 +22,7 @@ public class Climber extends Subsystem {
     
     
 	public Climber(int climberMotorNumber, int solenoidChannelUp, int solenoidChannelDown) {
-		this.climberMotor = new Talon(climberMotorNumber);
+		this.climberMotor = new Victor(climberMotorNumber);
 		this.solenoidUp = new Solenoid(solenoidChannelUp);
 		this.solenoidDown = new Solenoid(solenoidChannelDown);
 		

@@ -3,7 +3,7 @@ package org.usfirst.frc.team2339.robot.subsystems;
 import org.usfirst.frc.team2339.robot.OI;
 import org.usfirst.frc.team2339.robot.components.OperatorJoystick;
 
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -12,16 +12,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class BoulderHandler extends Subsystem {
 
-    private final Talon conveyorMotor;
-    private final Talon shooterMotor0;
-    private final Talon shooterMotor1;
+    private final Victor conveyorMotor;
+    private final Victor shooterMotor0;
+    private final Victor shooterMotor1;
     
     private Double timeShooterButtonFirstPushed = null;
 
 	public BoulderHandler(int conveyorMotorNumber, int shooterMotorNumber0, int shooterMotorNumber1) {
-		this.conveyorMotor = new Talon(conveyorMotorNumber);
-		this.shooterMotor0 = new Talon(shooterMotorNumber0);
-		this.shooterMotor1 = new Talon(shooterMotorNumber1);
+		this.conveyorMotor = new Victor(conveyorMotorNumber);
+		this.shooterMotor0 = new Victor(shooterMotorNumber0);
+		this.shooterMotor1 = new Victor(shooterMotorNumber1);
 	}
     
     // Put methods for controlling this subsystem
