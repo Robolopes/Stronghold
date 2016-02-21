@@ -3,6 +3,7 @@ package org.usfirst.frc.team2339.robot;
 
 import org.usfirst.frc.team2339.robot.commands.AutonomousCommand;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -30,6 +31,7 @@ public class Robot extends IterativeRobot {
     // Commands
     private AutonomousCommand autonomousCommand;
 
+    Compressor compressor = new Compressor(0);
     SendableChooser chooser;
 
     /**
@@ -73,6 +75,7 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
      */
     public void disabledInit(){
+    	compressor.setClosedLoopControl(false);
        	RobotMap.Subsystem.robotDrive.stop();
     }
 	
@@ -90,6 +93,8 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
+    	
+    	compressor.setClosedLoopControl(true);
     	
         // Autonomous command
         autonomousCommand = new AutonomousCommand(RobotMap.Subsystem.robotDrive, RobotMap.Subsystem.scimitar, 
@@ -113,6 +118,7 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         //if (autonomousCommand != null) autonomousCommand.cancel();
         
+    	compressor.setClosedLoopControl(true);
     	RobotMap.Subsystem.robotDrive.shift(false);
         oi.getTeleopDrive().start();
         oi.getTeleopScimitar().start();
