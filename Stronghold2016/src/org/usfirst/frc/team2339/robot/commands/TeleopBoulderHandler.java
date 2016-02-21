@@ -2,7 +2,6 @@ package org.usfirst.frc.team2339.robot.commands;
 
 import org.usfirst.frc.team2339.robot.components.OperatorJoystick;
 import org.usfirst.frc.team2339.robot.subsystems.BoulderHandler;
-import org.usfirst.frc.team2339.robot.subsystems.Scimitar;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -32,7 +31,7 @@ public class TeleopBoulderHandler extends Command {
 
 	@Override
 	protected void execute() {
-    	boulderHandler.takeJoystickInput(boulderHandlerStick);
+    	boulderHandler.takeJoystickInput(boulderHandlerStick, timeSinceInitialized());
 	}
 
 	@Override

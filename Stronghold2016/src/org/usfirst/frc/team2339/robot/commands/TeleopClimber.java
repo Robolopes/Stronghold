@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2339.robot.commands;
 
+import org.usfirst.frc.team2339.robot.OI;
 import org.usfirst.frc.team2339.robot.components.OperatorJoystick;
 import org.usfirst.frc.team2339.robot.subsystems.Climber;
 
@@ -31,7 +32,10 @@ public class TeleopClimber extends Command {
 
 	@Override
 	protected void execute() {
-    	climber.takeJoystickInput(climberStick);
+		// Don't send commands to climber until late in match
+		if (timeSinceInitialized() > OI.CLIMBER_TELEOP_TIME_DISABLE_SECONDS) {
+			climber.takeJoystickInput(climberStick);
+		}
 	}
 
 	@Override

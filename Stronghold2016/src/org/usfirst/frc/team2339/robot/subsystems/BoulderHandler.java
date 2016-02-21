@@ -15,6 +15,8 @@ public class BoulderHandler extends Subsystem {
     private final Talon conveyorMotor;
     private final Talon shooterMotor0;
     private final Talon shooterMotor1;
+    
+    private Double timeShooterButtonFirstPushed = null;
 
 	public BoulderHandler(int conveyorMotorNumber, int shooterMotorNumber0, int shooterMotorNumber1) {
 		this.conveyorMotor = new Talon(conveyorMotorNumber);
@@ -67,6 +69,26 @@ public class BoulderHandler extends Subsystem {
         setShooterMotors(0.0);
     }
     
+    public void shoot(double currentTimeSeconds) {
+		setShooterMotors(OI.SHOOTER_SPEED);
+		if (timeShooterButtonFirstPushed == null) {
+			timeShooterButtonFirstPushed = currentTimeSeconds;
+		} else {
+			if (currentTimeSeconds - timeShooterButtonFirstPushed < OI.SHOOTER_TIME_TO_SPIN_UP_SECONDS) {
+				// Don't feed balls at first, give shooter motors time to come up to speed
+				stopConveyorMotor();
+			} else {
+				// Start feeding balls after alloted wait time.
+				setConveyorMotor(OI.CONVERYOR_INTAKE_SPEED);
+			}
+		}
+    }
+    
+    public void stopShooting() {
+		stopShooterMotors();
+		timeShooterButtonFirstPushed = null;
+    }
+    
     /**
      * Set conveyor motor based on joystick input
      * 
@@ -89,18 +111,25 @@ public class BoulderHandler extends Subsystem {
      * 
      * @param stick
      */
-    private void takeJoystickShooter(OperatorJoystick stick) {
+    private void takeJoystickShooter(OperatorJoystick stick, double currentTimeSeconds) {
     	
     	if (stick.getRawButton(OI.OPERATOR_BUTTON_SHOOT)) {
-    		setShooterMotors(OI.SHOOTER_SPEED);
+    		shoot(currentTimeSeconds);
     	} else {
-    		stopShooterMotors();
+    		stopShooting();
     	}
 
     }
     
-    public void takeJoystickInput(OperatorJoystick stick) {
-    	takeJoystickShooter(stick);
+    /**
+     * Accepts operator stick and time to control boulder handling
+     * (time helps with shooter motor vs. conveyor motor timing)
+     * 
+     * @param stick
+     * @param currentTimeSeconds
+     */
+    public void takeJoystickInput(OperatorJoystick stick, double currentTimeSeconds) {
+    	takeJoystickShooter(stick, currentTimeSeconds);
     	takeJoystickConveyor(stick);
     }
     
