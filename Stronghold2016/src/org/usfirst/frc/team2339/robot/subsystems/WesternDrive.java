@@ -41,8 +41,7 @@ public class WesternDrive extends Subsystem {
     	Talon driveLeft1 = new Talon(driveChannelLeft1);
     	Talon driveRight0 = new Talon(driveChannelRight0);
     	Talon driveRight1 = new Talon(driveChannelRight1);
-    	this.drive = new RobotDrive(driveChannelLeft0, driveChannelLeft1, 
-    			driveChannelRight0, driveChannelRight1);
+    	this.drive = new RobotDrive(driveLeft0, driveLeft1, driveRight0, driveRight1);
     	// Invert because one motor should be opposite
     	this.drive.setInvertedMotor(MotorType.kRearLeft, true);
     	this.drive.setInvertedMotor(MotorType.kRearRight, true);
