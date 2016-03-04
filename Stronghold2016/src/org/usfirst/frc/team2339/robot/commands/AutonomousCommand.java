@@ -33,7 +33,7 @@ public class AutonomousCommand extends CommandGroup {
         // arm.
     	
     	addSequential(new TimedDrive("Drive to auto zone", robotDrive, 
-    			SmartDashboard.getNumber("Auto drive time ", 2.25), 
+    			SmartDashboard.getNumber("Auto drive time ", 1.00), 
     			SmartDashboard.getNumber("Auto drive speed ", 0.5))); 
     }
 }
