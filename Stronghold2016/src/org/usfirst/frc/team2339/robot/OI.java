@@ -45,7 +45,8 @@ public class OI {
 	public static final double SHOOTER_SPEED = 1.0;
 	// Number of seconds to allow shooter to spin up before feeding balls
 	public static final double SHOOTER_TIME_TO_SPIN_UP_SECONDS = 0.1;
-	public static final int OPERATOR_BUTTON_SCIMITAR_UP_DOWN = 2;
+	public static final int OPERATOR_BUTTON_SCIMITAR_UP = 2;
+	public static final int OPERATOR_BUTTON_SCIMITAR_DOWN = 3;
 	public static final int OPERATOR_BUTTON_CONVERYOR_INTAKE = 5;
 	public static final double CONVERYOR_INTAKE_SPEED = 1.0;
 	public static final int OPERATOR_BUTTON_CONVERYOR_REVERSE = 6;
