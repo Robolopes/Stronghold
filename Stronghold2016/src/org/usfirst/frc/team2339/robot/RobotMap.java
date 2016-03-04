@@ -58,7 +58,6 @@ public class RobotMap {
 		public static final int DRIVE_LEFT_1 = 3;
 		public static final int DRIVE_RIGHT_0 = 4;
 		public static final int DRIVE_RIGHT_1 = 5;
-		public static final int SCIMITAR = 10;
 		public static final int CONVEYOR = 0;
 		public static final int SHOOTING_WHEEL_0 = 1;
 		public static final int SHOOTING_WHEEL_1 = 6;
@@ -102,7 +101,7 @@ public class RobotMap {
         /*
          * Initialize climber subsystem
          */
-        Subsystem.scimitar = new Scimitar(PWM.SCIMITAR, Solenoids.SCIMITAR_UP, Solenoids.SCIMITAR_DOWN);
+        Subsystem.scimitar = new Scimitar(Solenoids.SCIMITAR_UP, Solenoids.SCIMITAR_DOWN);
         
         /*
          * Initialize climber subsystem

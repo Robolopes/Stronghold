@@ -41,12 +41,10 @@ public class TeleopScimitar extends Command {
 
 	@Override
 	protected void end() {
-		scimitar.stopIntakeMotor();
 	}
 
 	@Override
 	protected void interrupted() {
-		scimitar.stopIntakeMotor();
 	}
 
 }

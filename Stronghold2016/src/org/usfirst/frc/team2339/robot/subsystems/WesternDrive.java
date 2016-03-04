@@ -1,16 +1,11 @@
 package org.usfirst.frc.team2339.robot.subsystems;
 
 import org.usfirst.frc.team2339.robot.OI;
-import org.usfirst.frc.team2339.robot.RobotMap.Constants;
 import org.usfirst.frc.team2339.robot.components.DriveJoystick;
-import org.usfirst.frc.team2339.robot.components.DrivePidController;
-import org.usfirst.frc.team2339.robot.components.DualTalonController;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

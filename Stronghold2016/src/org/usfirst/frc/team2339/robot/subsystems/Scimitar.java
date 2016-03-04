@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Scimitar extends Subsystem {
 
-    //private final Victor intakeMotor;
     private final Solenoid solenoidUp;
     private final Solenoid solenoidDown;
 
@@ -20,8 +19,7 @@ public class Scimitar extends Subsystem {
     private boolean wasScimitarButtonJustPushed;
     
     
-	public Scimitar(int intakeMotorNumber, int solenoidChannelUp, int solenoidChannelDown) {
-		//this.intakeMotor = new Victor(intakeMotorNumber);
+	public Scimitar(int solenoidChannelUp, int solenoidChannelDown) {
 		this.solenoidUp = new Solenoid(solenoidChannelUp);
 		this.solenoidDown = new Solenoid(solenoidChannelDown);
 		
@@ -35,24 +33,6 @@ public class Scimitar extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    }
-    
-    /**
-     * Set the intake motor
-     * 
-     * @param value motor speed
-     */
-    public void setIntakeMotor(double value) {
-        SmartDashboard.putNumber("Lift motor value ", value);
-    	//intakeMotor.set(value);
-    }
-    
-    /**
-     * Stop the intake motor
-     * 
-     */
-    public void stopIntakeMotor() {
-        setIntakeMotor(0.0);
     }
     
     /**
@@ -111,26 +91,8 @@ public class Scimitar extends Subsystem {
         
     }
     
-    /**
-     * Set scimitar motor based on joystick input.
-     * 
-     * @param stick
-     */
-    private void takeJoystickMotor(OperatorJoystick stick) {
-    	
-    	if (stick.getRawButton(OI.OPERATOR_BUTTON_SCIMITAR_ROLLER_INTAKE)) {
-    		setIntakeMotor(OI.SCIMITAR_ROLLER_INTAKE_SPEED);
-    	} else if (stick.getRawButton(OI.OPERATOR_BUTTON_SCIMITAR_ROLLER_REVERSE)) {
-    		setIntakeMotor(OI.SCIMITAR_ROLLER_REVERSE_SPEED);
-    	} else {
-    		setIntakeMotor(0.0);
-    	}
-
-    }
-    
     public void takeJoystickInput(OperatorJoystick stick) {
     	takeJoystickPosition(stick);
-    	takeJoystickMotor(stick);
     }
     
 }
