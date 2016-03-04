@@ -95,9 +95,7 @@ public class BoulderHandler extends Subsystem {
      * @param stick
      */
     private void takeJoystickConveyor(OperatorJoystick stick) {
-    	if (stick.getRawButton(OI.OPERATOR_BUTTON_SHOOT)) {
-    		// Do nothing, let shooter logic manage conveyor
-    	} else if (stick.getRawButton(OI.OPERATOR_BUTTON_CONVERYOR_INTAKE)) {
+    	if (stick.getRawButton(OI.OPERATOR_BUTTON_CONVERYOR_INTAKE)) {
     		setConveyorMotor(OI.CONVERYOR_INTAKE_SPEED);
     	} else if (stick.getRawButton(OI.OPERATOR_BUTTON_CONVERYOR_REVERSE)) {
     		setConveyorMotor(OI.CONVERYOR_REVERSE_SPEED);
