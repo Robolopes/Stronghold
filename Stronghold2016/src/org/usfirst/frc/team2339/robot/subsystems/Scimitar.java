@@ -19,7 +19,7 @@ public class Scimitar extends Subsystem {
 		this.solenoidUp = new Solenoid(solenoidChannelUp);
 		this.solenoidDown = new Solenoid(solenoidChannelDown);
 		
-    	stopScimitar();
+		moveScimitarUp();
 	}
     
     // Put methods for controlling this subsystem
@@ -43,6 +43,12 @@ public class Scimitar extends Subsystem {
     }
     
     public void stopScimitar() {
+        solenoidUp.set(true);
+        solenoidDown.set(true);
+        SmartDashboard.putString("Scimitar action ", "Stop");
+    }
+    
+    public void releaseScimitar() {
         solenoidUp.set(false);
         solenoidDown.set(false);
         SmartDashboard.putString("Scimitar action ", "Stop");
@@ -59,7 +65,7 @@ public class Scimitar extends Subsystem {
     	} else if (stick.getRawButton(OI.OPERATOR_BUTTON_SCIMITAR_DOWN)) {
     		moveScimitarDown();
     	} else {
-    		stopScimitar();
+    		releaseScimitar();
     	}
     }
     
