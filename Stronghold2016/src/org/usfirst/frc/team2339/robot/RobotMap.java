@@ -41,10 +41,10 @@ public class RobotMap {
 	};
 	
 	public static class Solenoids {
-		public static final int SUPER_SHIFTER = 1;
+		public static final int SUPER_SHIFTER = 0;
 		public static final int SCIMITAR_UP = 3;
-		public static final int SCIMITAR_DOWN = 2;
-		public static final int CLIMBER_UP = 4;
+		public static final int SCIMITAR_DOWN = 4;
+		public static final int CLIMBER_UP = 2;
 		public static final int CLIMBER_DOWN = 5;
 	};
 	
