@@ -4,7 +4,6 @@ import org.usfirst.frc.team2339.robot.OI;
 import org.usfirst.frc.team2339.robot.components.OperatorJoystick;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -13,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Scimitar extends Subsystem {
 
-    private final Victor intakeMotor;
+    //private final Victor intakeMotor;
     private final Solenoid solenoidUp;
     private final Solenoid solenoidDown;
 
@@ -22,7 +21,7 @@ public class Scimitar extends Subsystem {
     
     
 	public Scimitar(int intakeMotorNumber, int solenoidChannelUp, int solenoidChannelDown) {
-		this.intakeMotor = new Victor(intakeMotorNumber);
+		//this.intakeMotor = new Victor(intakeMotorNumber);
 		this.solenoidUp = new Solenoid(solenoidChannelUp);
 		this.solenoidDown = new Solenoid(solenoidChannelDown);
 		
@@ -45,7 +44,7 @@ public class Scimitar extends Subsystem {
      */
     public void setIntakeMotor(double value) {
         SmartDashboard.putNumber("Lift motor value ", value);
-    	intakeMotor.set(value);
+    	//intakeMotor.set(value);
     }
     
     /**

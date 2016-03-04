@@ -42,8 +42,8 @@ public class RobotMap {
 	
 	public static class Solenoids {
 		public static final int SUPER_SHIFTER = 1;
-		public static final int SCIMITAR_UP = 2;
-		public static final int SCIMITAR_DOWN = 3;
+		public static final int SCIMITAR_UP = 3;
+		public static final int SCIMITAR_DOWN = 2;
 		public static final int CLIMBER_UP = 4;
 		public static final int CLIMBER_DOWN = 5;
 	};
@@ -54,14 +54,14 @@ public class RobotMap {
 	};
 	
 	public static class PWM {
-		public static final int DRIVE_LEFT_0 = 0;
-		public static final int DRIVE_LEFT_1 = 1;
-		public static final int DRIVE_RIGHT_0 = 2;
-		public static final int DRIVE_RIGHT_1 = 3;
-		public static final int SCIMITAR = 4;
-		public static final int CONVEYOR = 5;
-		public static final int SHOOTING_WHEEL_0 = 6;
-		public static final int SHOOTING_WHEEL_1 = 7;
+		public static final int DRIVE_LEFT_0 = 2;
+		public static final int DRIVE_LEFT_1 = 3;
+		public static final int DRIVE_RIGHT_0 = 4;
+		public static final int DRIVE_RIGHT_1 = 5;
+		public static final int SCIMITAR = 10;
+		public static final int CONVEYOR = 0;
+		public static final int SHOOTING_WHEEL_0 = 1;
+		public static final int SHOOTING_WHEEL_1 = 6;
 		public static final int CLIMBER_WINCH = 8;
 	};
 	

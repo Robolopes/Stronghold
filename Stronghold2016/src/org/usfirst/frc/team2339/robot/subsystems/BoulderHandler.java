@@ -57,8 +57,8 @@ public class BoulderHandler extends Subsystem {
      */
     public void setShooterMotors(double value) {
         SmartDashboard.putNumber("Shooter motor value ", value);
-    	shooterMotor0.set(value);
-    	shooterMotor1.set(-value);
+    	shooterMotor0.set(-value);
+    	shooterMotor1.set(value);
     }
     
     /**
@@ -76,10 +76,10 @@ public class BoulderHandler extends Subsystem {
 		} else {
 			if (currentTimeSeconds - timeShooterButtonFirstPushed < OI.SHOOTER_TIME_TO_SPIN_UP_SECONDS) {
 				// Don't feed balls at first, give shooter motors time to come up to speed
-				stopConveyorMotor();
+				//stopConveyorMotor();
 			} else {
 				// Start feeding balls after alloted wait time.
-				setConveyorMotor(OI.CONVERYOR_INTAKE_SPEED);
+				//setConveyorMotor(OI.CONVERYOR_INTAKE_SPEED);
 			}
 		}
     }

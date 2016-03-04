@@ -101,7 +101,7 @@ public class Robot extends IterativeRobot {
         		RobotMap.Subsystem.boulderHandler);
     	
     	// schedule the autonomous command
-        if (autonomousCommand != null) autonomousCommand.start();
+        //if (autonomousCommand != null) autonomousCommand.start();
     }
 
     /**
