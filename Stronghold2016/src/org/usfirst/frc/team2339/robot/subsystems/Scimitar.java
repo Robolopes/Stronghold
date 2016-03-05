@@ -3,7 +3,8 @@ package org.usfirst.frc.team2339.robot.subsystems;
 import org.usfirst.frc.team2339.robot.OI;
 import org.usfirst.frc.team2339.robot.components.OperatorJoystick;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -12,12 +13,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Scimitar extends Subsystem {
 
-    private final Solenoid solenoidUp;
-    private final Solenoid solenoidDown;
+    private final DoubleSolenoid solenoid;
 
 	public Scimitar(int solenoidChannelUp, int solenoidChannelDown) {
-		this.solenoidUp = new Solenoid(solenoidChannelUp);
-		this.solenoidDown = new Solenoid(solenoidChannelDown);
+		this.solenoid = new DoubleSolenoid(solenoidChannelUp, solenoidChannelDown);
 		
 		moveScimitarUp();
 	}
@@ -31,26 +30,22 @@ public class Scimitar extends Subsystem {
     }
     
     public void moveScimitarUp() {
-        solenoidUp.set(true);
-        solenoidDown.set(false);
+        solenoid.set(Value.kForward);
         SmartDashboard.putString("Scimitar action ", "Up");
     }
     
     public void moveScimitarDown() {
-        solenoidUp.set(false);
-        solenoidDown.set(true);
+        solenoid.set(Value.kReverse);
         SmartDashboard.putString("Scimitar action ", "Down");
     }
     
     public void stopScimitar() {
-        solenoidUp.set(true);
-        solenoidDown.set(true);
+        solenoid.set(Value.kOff);
         SmartDashboard.putString("Scimitar action ", "Stop");
     }
     
     public void releaseScimitar() {
-        solenoidUp.set(false);
-        solenoidDown.set(false);
+        solenoid.set(Value.kOff);
         SmartDashboard.putString("Scimitar action ", "Release");
     }
     
