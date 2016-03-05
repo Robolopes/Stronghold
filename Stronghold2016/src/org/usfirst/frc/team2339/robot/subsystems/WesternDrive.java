@@ -82,7 +82,7 @@ public class WesternDrive extends Subsystem {
      * @param right speed of right side. Negative is backward.
      */
     public void takeSpeedInput(double left, double right) {
-    	drive.tankDrive(left, right);
+    	drive.tankDrive(-left, -right);
     }
     
     /**
