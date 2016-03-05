@@ -12,6 +12,7 @@ public class TimedDrive extends Command {
 	private final WesternDrive robotDrive;
 	private final double time;
 	private final double speed;
+	private final boolean useHighGear;
 
 	/**
 	 * 
@@ -19,14 +20,16 @@ public class TimedDrive extends Command {
 	 * @param robotDrive Robot drive subsystem
 	 * @param time Time to drive (in seconds)
 	 * @param speed Speed to drive at [0, 1]
+	 * @param useHighGear true: use high gear. false: use low gear.
 	 * @param direction Direction to drive [-180, 180]. Zero is forward.
 	 */
-	public TimedDrive(String name, WesternDrive robotDrive, double time, double speed) {
+	public TimedDrive(String name, WesternDrive robotDrive, double time, double speed, boolean useHighGear) {
 		super(name);
         requires(robotDrive);
         this.robotDrive = robotDrive;
 		this.time = time;
 		this.speed = speed;
+		this.useHighGear = useHighGear;
 	}
 
 	@Override
@@ -35,7 +38,7 @@ public class TimedDrive extends Command {
 
 	@Override
 	protected void execute() {
-		robotDrive.shift(false);
+		robotDrive.shift(useHighGear);
 		robotDrive.takeSpeedInput(speed, speed);
 	}
 
