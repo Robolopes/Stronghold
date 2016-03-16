@@ -102,6 +102,9 @@ public class Robot extends IterativeRobot {
     	
     	// schedule the autonomous command
         if (autonomousCommand != null) autonomousCommand.start();
+        
+        // Camera
+        oi.getDashCamera().start();
     }
 
     /**
@@ -125,6 +128,7 @@ public class Robot extends IterativeRobot {
         oi.getTeleopBoulderHandler().start();
         // No climber
         //oi.getTeleopClimber().start();
+        oi.getDashCamera().start();
         
     }
 

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team2339.robot;
 
 import org.usfirst.frc.team2339.robot.subsystems.BoulderHandler;
+import org.usfirst.frc.team2339.robot.subsystems.CameraSystem;
 import org.usfirst.frc.team2339.robot.subsystems.Climber;
 import org.usfirst.frc.team2339.robot.subsystems.Scimitar;
 import org.usfirst.frc.team2339.robot.subsystems.WesternDrive;
@@ -77,11 +78,17 @@ public class RobotMap {
 		public static final Gyro GYRO = new AnalogGyro(Analog.GYRO_CHANNEL);
 	};
     
+	public static class Camera {
+		// The camera name (ex "cam0") can be found through the roborio web interface
+		public static final String NAME = "cam0";
+	}
+	
 	public static class Subsystem {
 	    public static WesternDrive robotDrive; 
 	    public static Scimitar scimitar;
 	    public static BoulderHandler boulderHandler;
 	    public static Climber climber;
+		public static CameraSystem cameraSystem;
 	};
     
 	/**
@@ -115,6 +122,7 @@ public class RobotMap {
         // No climber
         Subsystem.climber = null;
         
+		Subsystem.cameraSystem = new CameraSystem(Camera.NAME);
     }
 
 }

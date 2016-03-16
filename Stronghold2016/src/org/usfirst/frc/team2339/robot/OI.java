@@ -1,5 +1,6 @@
 package org.usfirst.frc.team2339.robot;
 
+import org.usfirst.frc.team2339.robot.commands.DashCamera;
 import org.usfirst.frc.team2339.robot.commands.TeleopBoulderHandler;
 import org.usfirst.frc.team2339.robot.commands.TeleopClimber;
 import org.usfirst.frc.team2339.robot.commands.TeleopDrive;
@@ -65,6 +66,7 @@ public class OI {
     private TeleopScimitar teleopScimitar;
     private TeleopBoulderHandler teleopBoulderHandler;
     private TeleopClimber teleopClimber;
+    private DashCamera dashCamera;
     
 	/**
 	 * 
@@ -79,6 +81,7 @@ public class OI {
         //setTeleopClimber(new TeleopClimber("Teleop lift", RobotMap.Subsystem.climber, getJoystickOperator()));
         // No climber
         setTeleopClimber(null);
+        setDashCamera(new DashCamera("Dash camera", RobotMap.Subsystem.cameraSystem));
 	}
 
     
@@ -167,6 +170,13 @@ public class OI {
 		this.teleopClimber = teleopClimber;
 	}
 
+	public DashCamera getDashCamera() {
+		return dashCamera;
+	}
+
+	public void setDashCamera(DashCamera dashCamera) {
+		this.dashCamera = dashCamera;
+	}
 
 }
 
