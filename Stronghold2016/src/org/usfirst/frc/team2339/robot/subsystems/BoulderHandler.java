@@ -3,7 +3,7 @@ package org.usfirst.frc.team2339.robot.subsystems;
 import org.usfirst.frc.team2339.robot.OI;
 import org.usfirst.frc.team2339.robot.components.OperatorJoystick;
 
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -12,16 +12,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class BoulderHandler extends Subsystem {
 
-    private final Victor conveyorMotor;
-    private final Victor shooterMotor0;
-    private final Victor shooterMotor1;
+    private final Talon conveyorMotor;
+    private final Talon shooterMotor0;
+    private final Talon shooterMotor1;
     
     private Double timeShooterButtonFirstPushed = null;
 
 	public BoulderHandler(int conveyorMotorNumber, int shooterMotorNumber0, int shooterMotorNumber1) {
-		this.conveyorMotor = new Victor(conveyorMotorNumber);
-		this.shooterMotor0 = new Victor(shooterMotorNumber0);
-		this.shooterMotor1 = new Victor(shooterMotorNumber1);
+		this.conveyorMotor = new Talon(conveyorMotorNumber);
+		this.shooterMotor0 = new Talon(shooterMotorNumber0);
+		this.shooterMotor1 = new Talon(shooterMotorNumber1);
 	}
     
     // Put methods for controlling this subsystem
@@ -57,8 +57,8 @@ public class BoulderHandler extends Subsystem {
      */
     public void setShooterMotors(double value) {
         SmartDashboard.putNumber("Shooter motor value ", value);
-    	shooterMotor0.set(value);
-    	shooterMotor1.set(-value);
+    	shooterMotor0.set(-value);
+    	shooterMotor1.set(value);
     }
     
     /**
@@ -76,10 +76,10 @@ public class BoulderHandler extends Subsystem {
 		} else {
 			if (currentTimeSeconds - timeShooterButtonFirstPushed < OI.SHOOTER_TIME_TO_SPIN_UP_SECONDS) {
 				// Don't feed balls at first, give shooter motors time to come up to speed
-				stopConveyorMotor();
+				//stopConveyorMotor();
 			} else {
 				// Start feeding balls after alloted wait time.
-				setConveyorMotor(OI.CONVERYOR_INTAKE_SPEED);
+				//setConveyorMotor(OI.CONVERYOR_INTAKE_SPEED);
 			}
 		}
     }
@@ -95,9 +95,7 @@ public class BoulderHandler extends Subsystem {
      * @param stick
      */
     private void takeJoystickConveyor(OperatorJoystick stick) {
-    	if (stick.getRawButton(OI.OPERATOR_BUTTON_SHOOT)) {
-    		// Do nothing, let shooter logic manage conveyor
-    	} else if (stick.getRawButton(OI.OPERATOR_BUTTON_CONVERYOR_INTAKE)) {
+    	if (stick.getRawButton(OI.OPERATOR_BUTTON_CONVERYOR_INTAKE)) {
     		setConveyorMotor(OI.CONVERYOR_INTAKE_SPEED);
     	} else if (stick.getRawButton(OI.OPERATOR_BUTTON_CONVERYOR_REVERSE)) {
     		setConveyorMotor(OI.CONVERYOR_REVERSE_SPEED);

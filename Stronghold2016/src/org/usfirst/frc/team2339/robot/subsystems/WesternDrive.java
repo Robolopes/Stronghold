@@ -1,16 +1,11 @@
 package org.usfirst.frc.team2339.robot.subsystems;
 
 import org.usfirst.frc.team2339.robot.OI;
-import org.usfirst.frc.team2339.robot.RobotMap.Constants;
 import org.usfirst.frc.team2339.robot.components.DriveJoystick;
-import org.usfirst.frc.team2339.robot.components.DrivePidController;
-import org.usfirst.frc.team2339.robot.components.DualTalonController;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -20,10 +15,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class WesternDrive extends Subsystem {
 	
 	private final RobotDrive drive;
-	private final Encoder encoderLeft;
-	private final Encoder encoderRight;
-	private final DrivePidController controllerLeft;
-	private final DrivePidController controllerRight;
+	//private final Encoder encoderLeft;
+	//private final Encoder encoderRight;
+	//private final DrivePidController controllerLeft;
+	//private final DrivePidController controllerRight;
 	private final double inchesPerPulseLow;
 	private final double inchesPerPulseHigh;
     private final Solenoid superShifter;
@@ -43,12 +38,13 @@ public class WesternDrive extends Subsystem {
     	Talon driveRight1 = new Talon(driveChannelRight1);
     	this.drive = new RobotDrive(driveLeft0, driveLeft1, driveRight0, driveRight1);
     	// Invert because one motor should be opposite
-    	this.drive.setInvertedMotor(MotorType.kRearLeft, true);
-    	this.drive.setInvertedMotor(MotorType.kRearRight, true);
+    	//this.drive.setInvertedMotor(MotorType.kRearLeft, true);
+    	//this.drive.setInvertedMotor(MotorType.kRearRight, true);
 
     	this.inchesPerPulseLow = inchesPerPulseLow;
     	this.inchesPerPulseHigh = inchesPerPulseHigh;
 
+    	/*
     	DualTalonController leftDual = new DualTalonController(driveLeft0, driveLeft1);
     	DualTalonController rightDual = new DualTalonController(driveRight0, driveRight1);
     	encoderLeft = new Encoder(driveEncoderChannelsLeft[0], driveEncoderChannelsLeft[1]);
@@ -65,6 +61,7 @@ public class WesternDrive extends Subsystem {
     			Constants.DRIVE_PID_D, 
     			encoderRight, 
     			rightDual);
+    			*/
 
     	this.superShifter = new Solenoid(superShifterChannel);
     	shift(true);
@@ -85,7 +82,7 @@ public class WesternDrive extends Subsystem {
      * @param right speed of right side. Negative is backward.
      */
     public void takeSpeedInput(double left, double right) {
-    	drive.tankDrive(left, right);
+    	drive.tankDrive(-left, -right);
     }
     
     /**
@@ -97,13 +94,13 @@ public class WesternDrive extends Subsystem {
         this.isSuperShifterLow = isSuperShifterLow;
         if (isSuperShifterLow) {
             SmartDashboard.putString("Super shifter ", "High");
-            encoderLeft.setDistancePerPulse(inchesPerPulseLow);
+/*            encoderLeft.setDistancePerPulse(inchesPerPulseLow);
             encoderRight.setDistancePerPulse(inchesPerPulseLow);
-        } else {
+*/        } else {
             SmartDashboard.putString("Super shifter ", "Low");
-            encoderLeft.setDistancePerPulse(inchesPerPulseHigh);
+/*            encoderLeft.setDistancePerPulse(inchesPerPulseHigh);
             encoderRight.setDistancePerPulse(inchesPerPulseHigh);
-        }
+*/        }
     }
     
     /*
@@ -158,9 +155,9 @@ public class WesternDrive extends Subsystem {
     }
 
     public void driveAtSpeed(double left, double right) {
-    	controllerLeft.setSetpoint(left);
+/*    	controllerLeft.setSetpoint(left);
     	controllerRight.setSetpoint(right);
-    }
+*/    }
     
     public void pidBrake() {
     	driveAtSpeed(0, 0);

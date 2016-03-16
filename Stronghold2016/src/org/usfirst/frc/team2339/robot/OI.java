@@ -45,15 +45,12 @@ public class OI {
 	public static final double SHOOTER_SPEED = 1.0;
 	// Number of seconds to allow shooter to spin up before feeding balls
 	public static final double SHOOTER_TIME_TO_SPIN_UP_SECONDS = 0.1;
-	public static final int OPERATOR_BUTTON_SCIMITAR_UP_DOWN = 2;
-	public static final int OPERATOR_BUTTON_SCIMITAR_ROLLER_INTAKE = 3;
-	public static final double SCIMITAR_ROLLER_INTAKE_SPEED = 0.5;
-	public static final int OPERATOR_BUTTON_SCIMITAR_ROLLER_REVERSE = 4;
-	public static final double SCIMITAR_ROLLER_REVERSE_SPEED = -0.5;
+	public static final int OPERATOR_BUTTON_SCIMITAR_UP = 3;
+	public static final int OPERATOR_BUTTON_SCIMITAR_DOWN = 4;
 	public static final int OPERATOR_BUTTON_CONVERYOR_INTAKE = 5;
-	public static final double CONVERYOR_INTAKE_SPEED = 0.5;
+	public static final double CONVERYOR_INTAKE_SPEED = 1.0;
 	public static final int OPERATOR_BUTTON_CONVERYOR_REVERSE = 6;
-	public static final double CONVERYOR_REVERSE_SPEED = -0.5;
+	public static final double CONVERYOR_REVERSE_SPEED = -1.0;
 	public static final int OPERATOR_BUTTON_CLIMBER_UP_DOWN = 7;
 	// Number of seconds before climber is allowed to operate
 	// 115 is 1 minute 55 seconds, which should be 20 seconds before the end of a 2:15 teleop period.
