@@ -76,7 +76,9 @@ public class OI {
         setTeleopDrive(new TeleopDrive("Teleop drive", RobotMap.Subsystem.robotDrive, getJoystickDriveLeft(), getJoystickDriveRight()));
         setTeleopScimitar(new TeleopScimitar("Teleop lift", RobotMap.Subsystem.scimitar, getJoystickOperator()));
         setTeleopBoulderHandler(new TeleopBoulderHandler("Teleop lift", RobotMap.Subsystem.boulderHandler, getJoystickOperator()));
-        setTeleopClimber(new TeleopClimber("Teleop lift", RobotMap.Subsystem.climber, getJoystickOperator()));
+        //setTeleopClimber(new TeleopClimber("Teleop lift", RobotMap.Subsystem.climber, getJoystickOperator()));
+        // No climber
+        setTeleopClimber(null);
 	}
 
     

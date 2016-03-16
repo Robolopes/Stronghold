@@ -123,7 +123,9 @@ public class Robot extends IterativeRobot {
         oi.getTeleopDrive().start();
         oi.getTeleopScimitar().start();
         oi.getTeleopBoulderHandler().start();
-        oi.getTeleopClimber().start();
+        // No climber
+        //oi.getTeleopClimber().start();
+        
     }
 
     /**

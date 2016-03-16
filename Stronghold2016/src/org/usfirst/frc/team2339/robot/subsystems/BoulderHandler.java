@@ -3,6 +3,7 @@ package org.usfirst.frc.team2339.robot.subsystems;
 import org.usfirst.frc.team2339.robot.OI;
 import org.usfirst.frc.team2339.robot.components.OperatorJoystick;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,13 +16,18 @@ public class BoulderHandler extends Subsystem {
     private final Talon conveyorMotor;
     private final Talon shooterMotor0;
     private final Talon shooterMotor1;
+    private final Solenoid solenoidUp;
+    private final Solenoid solenoidDown;
     
     private Double timeShooterButtonFirstPushed = null;
 
-	public BoulderHandler(int conveyorMotorNumber, int shooterMotorNumber0, int shooterMotorNumber1) {
+	public BoulderHandler(int conveyorMotorNumber, int shooterMotorNumber0, int shooterMotorNumber1, 
+			int solenoidChannelUp, int solenoidChannelDown) {
 		this.conveyorMotor = new Talon(conveyorMotorNumber);
 		this.shooterMotor0 = new Talon(shooterMotorNumber0);
 		this.shooterMotor1 = new Talon(shooterMotorNumber1);
+		this.solenoidUp = new Solenoid(solenoidChannelUp);
+		this.solenoidDown = new Solenoid(solenoidChannelDown);
 	}
     
     // Put methods for controlling this subsystem
@@ -73,6 +79,8 @@ public class BoulderHandler extends Subsystem {
 		setShooterMotors(OI.SHOOTER_SPEED);
 		if (timeShooterButtonFirstPushed == null) {
 			timeShooterButtonFirstPushed = currentTimeSeconds;
+			solenoidDown.set(false);
+			solenoidUp.set(true);
 		} else {
 			if (currentTimeSeconds - timeShooterButtonFirstPushed < OI.SHOOTER_TIME_TO_SPIN_UP_SECONDS) {
 				// Don't feed balls at first, give shooter motors time to come up to speed
@@ -86,6 +94,8 @@ public class BoulderHandler extends Subsystem {
     
     public void stopShooting() {
 		stopShooterMotors();
+		solenoidDown.set(true);
+		solenoidUp.set(false);
 		timeShooterButtonFirstPushed = null;
     }
     
