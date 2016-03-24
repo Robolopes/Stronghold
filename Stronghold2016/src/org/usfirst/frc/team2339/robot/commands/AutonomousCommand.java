@@ -33,11 +33,8 @@ public class AutonomousCommand extends CommandGroup {
         // arm.
     	
     	//addSequential(new MoveScimitar("Auto lower scimitar", scimitar, false));
-    	double driveTime = SmartDashboard.getNumber("Auto drive time ", 3.0);
-    	double driveSpeed = SmartDashboard.getNumber("Auto drive speed ", 1.0);
-    	// TODO: Is smart dash working??
-    	driveTime = 3.0;
-    	driveSpeed = 1.0;
+    	double driveTime = SmartDashboard.getNumber("Auto drive time ");
+    	double driveSpeed = SmartDashboard.getNumber("Auto drive speed ");
     	addSequential(new TimedDrive("Drive to auto zone", robotDrive, driveTime, driveSpeed)); 
     }
 }
