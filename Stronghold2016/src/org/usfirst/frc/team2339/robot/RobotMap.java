@@ -49,8 +49,8 @@ public class RobotMap {
 		// WARNING: Shooter flap uses same solenoids. Do not enable climber unless that is changed.
 		//public static final int CLIMBER_UP = 2;
 		//public static final int CLIMBER_DOWN = 5;
-		public static final int SHOOTER_FLAP_UP = 2;
-		public static final int SHOOTER_FLAP_DOWN = 5;
+		public static final int SHOOTER_FLAP = 1;
+		//public static final int SHOOTER_FLAP_DOWN = 5;
 	};
 	
 	public static class Analog {
@@ -108,7 +108,7 @@ public class RobotMap {
          * Initialize boulder handler subsystem
          */
         Subsystem.boulderHandler = new BoulderHandler(PWM.CONVEYOR, PWM.SHOOTING_WHEEL_0, PWM.SHOOTING_WHEEL_1, 
-        		Solenoids.SHOOTER_FLAP_UP, Solenoids.SHOOTER_FLAP_DOWN);
+        		Solenoids.SHOOTER_FLAP);
         
         /*
          * Initialize climber subsystem

@@ -16,18 +16,16 @@ public class BoulderHandler extends Subsystem {
     private final Talon conveyorMotor;
     private final Talon shooterMotor0;
     private final Talon shooterMotor1;
-    private final Solenoid solenoidUp;
-    private final Solenoid solenoidDown;
+    private final Solenoid flapSolenoid;
     
     private Double timeShooterButtonFirstPushed = null;
 
 	public BoulderHandler(int conveyorMotorNumber, int shooterMotorNumber0, int shooterMotorNumber1, 
-			int solenoidChannelUp, int solenoidChannelDown) {
+			int flapSolenoidChannel) {
 		this.conveyorMotor = new Talon(conveyorMotorNumber);
 		this.shooterMotor0 = new Talon(shooterMotorNumber0);
 		this.shooterMotor1 = new Talon(shooterMotorNumber1);
-		this.solenoidUp = new Solenoid(solenoidChannelUp);
-		this.solenoidDown = new Solenoid(solenoidChannelDown);
+		this.flapSolenoid = new Solenoid(flapSolenoidChannel);
 	}
     
     // Put methods for controlling this subsystem
@@ -79,8 +77,7 @@ public class BoulderHandler extends Subsystem {
 		setShooterMotors(OI.SHOOTER_SPEED);
 		if (timeShooterButtonFirstPushed == null) {
 			timeShooterButtonFirstPushed = currentTimeSeconds;
-			solenoidDown.set(false);
-			solenoidUp.set(true);
+			flapSolenoid.set(true);
 		} else {
 			if (currentTimeSeconds - timeShooterButtonFirstPushed < OI.SHOOTER_TIME_TO_SPIN_UP_SECONDS) {
 				// Don't feed balls at first, give shooter motors time to come up to speed
@@ -94,8 +91,7 @@ public class BoulderHandler extends Subsystem {
     
     public void stopShooting() {
 		stopShooterMotors();
-		solenoidDown.set(true);
-		solenoidUp.set(false);
+		flapSolenoid.set(false);
 		timeShooterButtonFirstPushed = null;
     }
     
