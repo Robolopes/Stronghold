@@ -82,7 +82,7 @@ public class WesternDrive extends Subsystem {
      * @param right speed of right side. Negative is backward.
      */
     public void takeSpeedInput(double left, double right) {
-        //SmartDashboard.putString("DB/String 6", String.format("Drive (%f, %f)", -left, -right));
+        SmartDashboard.putString("DB/String 6", String.format("Drive (%.2f, %.2f)", -left, -right));
     	drive.tankDrive(-left, -right);
     }
     
@@ -148,7 +148,8 @@ public class WesternDrive extends Subsystem {
     
     public void takeJoystickInput(DriveJoystick left, DriveJoystick right) {
     	takeJoystickShift(left, right);
-        //SmartDashboard.putString("DB/String 6", String.format("Drive (%f, %f)", left, right));
+        SmartDashboard.putString("DB/String 6", String.format("Drive (%.2f, %.2f)", 
+        		left.getFrontBack(), right.getFrontBack()));
     	drive.tankDrive(left, right);
     }
     

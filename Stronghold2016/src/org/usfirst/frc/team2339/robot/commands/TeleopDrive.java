@@ -38,8 +38,8 @@ public class TeleopDrive extends Command {
 		/*
 		 * Print out significant changes in drive info
 		 */
-		//SmartDashboard.putString("DB/String 0", String.format("Joystick left %.2f", driveStickLeft.getFrontBack()));
-		//SmartDashboard.putString("DB/String 1", String.format("Joystick right %.2f", driveStickRight.getFrontBack()));
+		SmartDashboard.putString("DB/String 0", String.format("Joystick left %.2f", driveStickLeft.getFrontBack()));
+		SmartDashboard.putString("DB/String 1", String.format("Joystick right %.2f", driveStickRight.getFrontBack()));
           
         robotDrive.takeJoystickInput(driveStickLeft, driveStickRight);
 	}

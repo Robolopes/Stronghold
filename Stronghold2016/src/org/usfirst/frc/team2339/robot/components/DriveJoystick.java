@@ -29,5 +29,5 @@ public class DriveJoystick extends Joystick {
 	public boolean isLeft() {
 		return isLeft;
 	}
-
+	
 }
