@@ -17,10 +17,21 @@ public class CameraSystem extends Subsystem {
 		super();
 		this.name = name;
 		
-		this.frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
-        this.session = NIVision.IMAQdxOpenCamera(name, 
-        		NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-        NIVision.IMAQdxConfigureGrab(this.session);
+		Image frameTmp = null;
+		int sessionTmp = 0;
+		try {
+			frameTmp = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
+			sessionTmp = NIVision.IMAQdxOpenCamera(name, 
+	        		NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+	        NIVision.IMAQdxConfigureGrab(sessionTmp);
+		} catch (Exception e) {
+			System.err.println("Failed to get image from camera");
+			System.err.println(e.getStackTrace());
+			frameTmp = null;
+			sessionTmp = 0;
+		}
+		this.frame = frameTmp;
+		this.session = sessionTmp;
 	}
 
 	public String getName() {
@@ -38,9 +49,8 @@ public class CameraSystem extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 	}
-
-	public void grabImage() {
-		
+	
+	protected void drawRectangle() {
         NIVision.IMAQdxStartAcquisition(session);
 
         /**
@@ -54,9 +64,21 @@ public class CameraSystem extends Subsystem {
         NIVision.imaqDrawShapeOnImage(frame, frame, rect,
                 DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);
         
-        CameraServer.getInstance().setImage(frame);
-
+        // Originally this call was after camera image grabbed.
         NIVision.IMAQdxStopAcquisition(session);		
+	}
+
+	public void grabImage() {
+
+		if (frame != null) {
+	        CameraServer.getInstance().setImage(frame);
+	        /*
+	         * JVM can run out of memory and crash. The following is supposed to help.
+	         * see http://www.chiefdelphi.com/forums/showthread.php?t=145192&highlight=camera+java+usb
+	         */
+	        frame.free();
+		}
+
 	}
 
 }
