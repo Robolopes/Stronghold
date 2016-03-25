@@ -96,6 +96,8 @@ public class Robot extends IterativeRobot {
     	
     	compressor.setClosedLoopControl(true);
     	
+    	RobotMap.Subsystem.scimitar.moveScimitarUp();
+    	
         // Autonomous command
         autonomousCommand = new AutonomousCommand(RobotMap.Subsystem.robotDrive, RobotMap.Subsystem.scimitar, 
         		RobotMap.Subsystem.boulderHandler);
@@ -123,6 +125,8 @@ public class Robot extends IterativeRobot {
         
     	compressor.setClosedLoopControl(true);
     	RobotMap.Subsystem.robotDrive.shift(false);
+    	RobotMap.Subsystem.scimitar.moveScimitarUp();
+    	
         oi.getTeleopDrive().start();
         oi.getTeleopScimitar().start();
         oi.getTeleopBoulderHandler().start();
