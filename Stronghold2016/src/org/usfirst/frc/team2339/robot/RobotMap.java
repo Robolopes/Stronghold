@@ -43,8 +43,8 @@ public class RobotMap {
 	
 	public static class Solenoids {
 		public static final int SUPER_SHIFTER = 0;
-		public static final int SCIMITAR_UP = 3;
-		public static final int SCIMITAR_DOWN = 4;
+		public static final int SCIMITAR_UP = 4;
+		public static final int SCIMITAR_DOWN = 3;
 		// No climber
 		// WARNING: Shooter flap uses same solenoids. Do not enable climber unless that is changed.
 		//public static final int CLIMBER_UP = 2;
