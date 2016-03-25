@@ -49,6 +49,8 @@ public class Robot extends IterativeRobot {
         // pointers. Bad news. Don't move it.
         oi = new OI();
 
+        // Camera
+    	RobotMap.Subsystem.cameraSystem.startImageCapture();
     }
 	
 	/**
@@ -88,7 +90,7 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
         
         // Camera
-    	RobotMap.Subsystem.cameraSystem.startImageCapture();
+    	//RobotMap.Subsystem.cameraSystem.startImageCapture();
         //oi.getDashCamera().start();
     }
 
@@ -116,8 +118,6 @@ public class Robot extends IterativeRobot {
         // No climber
         //oi.getTeleopClimber().start();
         
-        // Camera
-    	RobotMap.Subsystem.cameraSystem.startImageCapture();
         //oi.getDashCamera().start();
         
     }
