@@ -34,8 +34,10 @@ public class AutonomousCommand extends CommandGroup {
     	
     	boolean scimitarUp = SmartDashboard.getBoolean("DB/Button 0", true);
     	addSequential(new MoveScimitar("Auto lower scimitar", scimitar, scimitarUp));
+    	boolean isSuperShifterLow = SmartDashboard.getBoolean("DB/Button 1", false);
     	double driveTime = SmartDashboard.getNumber("DB/Slider 0", 0.0);
     	double driveSpeed = SmartDashboard.getNumber("DB/Slider 1", 0.0) / 5.0;
-    	addSequential(new TimedDrive("Drive to auto zone", robotDrive, driveTime, driveSpeed)); 
+    	addSequential(new TimedDrive("Drive to auto zone", robotDrive, isSuperShifterLow, 
+    			driveTime, driveSpeed)); 
     }
 }

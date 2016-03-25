@@ -11,6 +11,7 @@ public class TimedDrive extends Command {
 	
 	private final WesternDrive robotDrive;
 	private final double time;
+	private final boolean isSuperShifterLow;
 	private final double speed;
 
 	/**
@@ -21,11 +22,13 @@ public class TimedDrive extends Command {
 	 * @param speed Speed to drive at [0, 1]
 	 * @param direction Direction to drive [-180, 180]. Zero is forward.
 	 */
-	public TimedDrive(String name, WesternDrive robotDrive, double time, double speed) {
+	public TimedDrive(String name, WesternDrive robotDrive, boolean isSuperShifterLow, 
+			double time, double speed) {
 		super(name);
         requires(robotDrive);
         this.robotDrive = robotDrive;
 		this.time = time;
+		this.isSuperShifterLow = isSuperShifterLow;
 		this.speed = speed;
 	}
 
@@ -35,7 +38,7 @@ public class TimedDrive extends Command {
 
 	@Override
 	protected void execute() {
-		robotDrive.shift(false);
+		robotDrive.shift(isSuperShifterLow);
 		robotDrive.takeSpeedInput(speed, speed);
 	}
 
