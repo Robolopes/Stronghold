@@ -32,9 +32,10 @@ public class AutonomousCommand extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new MoveScimitar("Auto lower scimitar", scimitar, false));
-    	double driveTime = SmartDashboard.getNumber("Auto drive time ");
-    	double driveSpeed = SmartDashboard.getNumber("Auto drive speed ");
+    	boolean scimitarUp = SmartDashboard.getBoolean("DB/Button 0", true);
+    	addSequential(new MoveScimitar("Auto lower scimitar", scimitar, scimitarUp));
+    	double driveTime = SmartDashboard.getNumber("DB/Slider 0", 0.0);
+    	double driveSpeed = SmartDashboard.getNumber("DB/Slider 1", 0.0) / 5.0;
     	addSequential(new TimedDrive("Drive to auto zone", robotDrive, driveTime, driveSpeed)); 
     }
 }

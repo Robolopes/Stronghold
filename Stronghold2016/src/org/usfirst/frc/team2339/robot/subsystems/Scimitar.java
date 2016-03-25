@@ -33,25 +33,25 @@ public class Scimitar extends Subsystem {
     public void moveScimitarUp() {
         solenoidUp.set(true);
         solenoidDown.set(false);
-        SmartDashboard.putString("Scimitar action ", "Up");
+        SmartDashboard.putString("DB/String 3", "Scimitar Up");
     }
     
     public void moveScimitarDown() {
         solenoidUp.set(false);
         solenoidDown.set(true);
-        SmartDashboard.putString("Scimitar action ", "Down");
+        SmartDashboard.putString("DB/String 3", "Scimitar Down");
     }
     
     public void stopScimitar() {
         solenoidUp.set(true);
         solenoidDown.set(true);
-        SmartDashboard.putString("Scimitar action ", "Stop");
+        SmartDashboard.putString("DB/String 3", "Scimitar Stop");
     }
     
     public void releaseScimitar() {
         solenoidUp.set(false);
         solenoidDown.set(false);
-        SmartDashboard.putString("Scimitar action ", "Release");
+        SmartDashboard.putString("DB/String 3", "Scimitar Release");
     }
     
     /**

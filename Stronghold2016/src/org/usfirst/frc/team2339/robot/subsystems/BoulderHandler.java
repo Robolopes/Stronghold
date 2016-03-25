@@ -42,7 +42,7 @@ public class BoulderHandler extends Subsystem {
      * @param value motor speed
      */
     public void setConveyorMotor(double value) {
-        SmartDashboard.putNumber("Lift motor value ", value);
+        //SmartDashboard.putString("DB/String 2", String.format("Conveyor motor value %f", value));
     	conveyorMotor.set(value);
     }
     

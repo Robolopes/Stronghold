@@ -51,22 +51,6 @@ public class Robot extends IterativeRobot {
         // pointers. Bad news. Don't move it.
         oi = new OI();
 
-        // Autonomous dashboard values
-        try {
-            SmartDashboard.getNumber("Auto drive time ");
-            SmartDashboard.getNumber("Auto drive speed ");
-        } catch (TableKeyNotDefinedException e) {
-            SmartDashboard.putNumber("Auto drive time ", 3.0);
-            SmartDashboard.putNumber("Auto drive speed ", 1.0);
-        }
-
-        /*
-         * TODO: Figure out what a SendableChooser does
-        chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new AutonomousCommand(RobotMap.Subsystem.robotDrive, RobotMap.Subsystem.lift));
-        SmartDashboard.putData("Auto mode", chooser);
-         */
-        
     }
 	
 	/**

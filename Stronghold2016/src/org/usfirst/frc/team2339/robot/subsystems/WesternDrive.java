@@ -82,6 +82,7 @@ public class WesternDrive extends Subsystem {
      * @param right speed of right side. Negative is backward.
      */
     public void takeSpeedInput(double left, double right) {
+        //SmartDashboard.putString("DB/String 6", String.format("Drive (%f, %f)", -left, -right));
     	drive.tankDrive(-left, -right);
     }
     
@@ -93,11 +94,11 @@ public class WesternDrive extends Subsystem {
         superShifter.set(isSuperShifterLow);
         this.isSuperShifterLow = isSuperShifterLow;
         if (isSuperShifterLow) {
-            SmartDashboard.putString("Super shifter ", "High");
+            SmartDashboard.putString("DB/String 5", "Super-shifter High");
 /*            encoderLeft.setDistancePerPulse(inchesPerPulseLow);
             encoderRight.setDistancePerPulse(inchesPerPulseLow);
 */        } else {
-            SmartDashboard.putString("Super shifter ", "Low");
+    	    SmartDashboard.putString("DB/String 5", "Super-shifter Low");
 /*            encoderLeft.setDistancePerPulse(inchesPerPulseHigh);
             encoderRight.setDistancePerPulse(inchesPerPulseHigh);
 */        }
@@ -147,10 +148,12 @@ public class WesternDrive extends Subsystem {
     
     public void takeJoystickInput(DriveJoystick left, DriveJoystick right) {
     	takeJoystickShift(left, right);
+        //SmartDashboard.putString("DB/String 6", String.format("Drive (%f, %f)", left, right));
     	drive.tankDrive(left, right);
     }
     
     public void stop() {
+        SmartDashboard.putString("DB/String 6", "Drive Stop");
     	drive.tankDrive(0, 0);
     }
 
@@ -160,6 +163,7 @@ public class WesternDrive extends Subsystem {
 */    }
     
     public void pidBrake() {
+        SmartDashboard.putString("DB/String 6", "Drive Brake");
     	driveAtSpeed(0, 0);
     }
 }
