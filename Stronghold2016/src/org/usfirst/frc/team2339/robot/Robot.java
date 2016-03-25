@@ -106,7 +106,8 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
         
         // Camera
-        oi.getDashCamera().start();
+    	RobotMap.Subsystem.cameraSystem.startImageCapture();
+        //oi.getDashCamera().start();
     }
 
     /**
@@ -132,7 +133,10 @@ public class Robot extends IterativeRobot {
         oi.getTeleopBoulderHandler().start();
         // No climber
         //oi.getTeleopClimber().start();
-        oi.getDashCamera().start();
+        
+        // Camera
+    	RobotMap.Subsystem.cameraSystem.startImageCapture();
+        //oi.getDashCamera().start();
         
     }
 

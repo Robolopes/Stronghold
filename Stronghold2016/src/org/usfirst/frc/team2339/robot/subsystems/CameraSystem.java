@@ -20,7 +20,9 @@ public class CameraSystem extends Subsystem {
 		
 		Image frameTmp = null;
 		int sessionTmp = 0;
-		try {
+		
+		
+/*		try {
 			frameTmp = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 			sessionTmp = NIVision.IMAQdxOpenCamera(name, 
 	        		NIVision.IMAQdxCameraControlMode.CameraControlModeController);
@@ -31,6 +33,7 @@ public class CameraSystem extends Subsystem {
 			frameTmp = null;
 			sessionTmp = 0;
 		}
+*/		
 		this.frame = frameTmp;
 		this.session = sessionTmp;
 		this.isAcquiring = false;
@@ -50,6 +53,10 @@ public class CameraSystem extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
+	}
+	
+	public void startImageCapture() {
+        CameraServer.getInstance().startAutomaticCapture(name);
 	}
 	
 	protected void drawRectangle() {
