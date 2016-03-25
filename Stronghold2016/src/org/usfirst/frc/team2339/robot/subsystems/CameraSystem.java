@@ -12,6 +12,7 @@ public class CameraSystem extends Subsystem {
 	private final String name;
 	private final int session;
 	private final Image frame;
+	private boolean isAcquiring;
 	
 	public CameraSystem(String name) {
 		super();
@@ -32,6 +33,7 @@ public class CameraSystem extends Subsystem {
 		}
 		this.frame = frameTmp;
 		this.session = sessionTmp;
+		this.isAcquiring = false;
 	}
 
 	public String getName() {
@@ -65,7 +67,8 @@ public class CameraSystem extends Subsystem {
 
 	public void grabImage() {
 
-		if (frame != null) {
+		if (frame != null && !isAcquiring) {
+			isAcquiring = true;
 			try {
 		        NIVision.IMAQdxStartAcquisition(session);
 		        NIVision.IMAQdxGrab(session, frame, 1);
@@ -79,8 +82,9 @@ public class CameraSystem extends Subsystem {
 		         * JVM can run out of memory and crash. The following is supposed to help.
 		         * see http://www.chiefdelphi.com/forums/showthread.php?t=145192&highlight=camera+java+usb
 		         */
-		        frame.free();
+		        //frame.free();
 			}
+			isAcquiring = false;
 		}
 
 	}
